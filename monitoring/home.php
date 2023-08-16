@@ -9,23 +9,16 @@
                         <h5 class="card-title text-center font-style=bold"><b>RAD</b></h5>
                     </div>
                     <div class="card-body h-100">
-                        <div id="serving-list" class="list-group overflow-auto">
+                    <div id="serving-list" class="list-group overflow-auto">
                             <?php 
-                            $cashier = $conn->query("SELECT queue_list.*, cashier_list.*, teller_list.teller_id, teller_list.teller_name, COUNT(queue_list.queue_id) AS queue_count
-                            FROM queue_list
-                            FULL JOIN cashier_list ON queue_list.Cashier_id = cashier_list.cashier_id
-                            FULL JOIN teller_list ON queue_list.Teller_id = teller_list.teller_id
-                            WHERE date(queue_list.DATE_CREATED) = date('now')
-                            GROUP BY teller_list.teller_id
-                            ORDER BY queue_list.queue_id DESC limit 4");
-                            
+                          $cashier = $conn->query("SELECT * FROM `teller_list` order by `teller_id` asc");
                             while($row = $cashier->fetchArray()):
                             ?>
-                            <div class="list-group-item" data-id="<?php echo $row['cashier_id'] ?>" style="display:none">
-                                <div class="fs-5 fw-2 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div>
-                                <div class="ps-4"><span class="serve-queue fs-4 fw-bold">10001 - Ivan Jay Almeria</span></div>
+                            <div class="list-group-item" data-id="<?php echo $row['teller_id']?>" style="display:none" >
+                            <center> <div class="fs-3 fw-2 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div></center>
+                            <center> <div ><span class="serve-queue fs-1 fw-bold">10001 - Ivan Jay Almeria</span></div></center>
                             </div>
-                            <?php endwhile; ?>
+                            <?php endwhile; ?> 
                         </div>                        
                     </div>
 
@@ -33,23 +26,16 @@
                         <h5 class="card-title text-center"><b>LIVE</b></h5>
                     </div>
                     <div class="card-body h-100">
-                        <div id="serving-listlive" class="list-group overflow-auto">
+                    <div id="serving-list-liv" class="list-group overflow-auto">
                             <?php 
-                            $cashier = $conn->query("SELECT queue_list_liv.*, cashier_list.*, teller_list.teller_id, teller_list.teller_name, COUNT(queue_list_liv.queue_id) AS queue_count
-                            FROM queue_list_liv
-                            FULL JOIN cashier_list ON queue_list_liv.Cashier_id = cashier_list.cashier_id
-                            FULL JOIN teller_list ON queue_list_liv.Teller_id = teller_list.teller_id
-                            WHERE date(queue_list_liv.DATE_CREATED) = date('now')
-                            GROUP BY teller_list.teller_id
-                            ORDER BY queue_list_liv.queue_id DESC limit 4");
-                            
+                          $cashier = $conn->query("SELECT * FROM `teller_list` order by `teller_id` asc");
                             while($row = $cashier->fetchArray()):
                             ?>
-                            <div class="list-group-item" data-id="<?php echo $row['cashier_id'] ?>" style="display:none">
-                                <div class="fs-5 fw-2 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div>
-                                <div class="ps-4"><span class="serve-queue fs-4 fw-bold">10001 - Ivan Jay Almeria</span></div>
+                            <div class="list-group-item" data-id="<?php echo $row['teller_id']?>" style="display:none" >
+                            <center> <div class="fs-3 fw-2 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div></center>
+                            <center> <div ><span class="serve-queue fs-1 fw-bold">10001 - Ivan Jay Almeria</span></div></center>
                             </div>
-                            <?php endwhile; ?>                            
+                            <?php endwhile; ?>                             
                         </div>
                     </div>
 
@@ -57,23 +43,16 @@
                         <h5 class="card-title text-center"><b>STUDENT ACCOUNT</b></h5>
                     </div>
                     <div class="card-body h-100">
-                        <div id="serving-list_sa" class="list-group overflow-auto">
+                    <div id="serving-list-sa" class="list-group overflow-auto">
                             <?php 
-                            $cashier = $conn->query("SELECT queue_list_sa.*, cashier_list.*, teller_list.teller_id, teller_list.teller_name, COUNT(queue_list_sa.queue_id) AS queue_count
-                            FROM queue_list_sa
-                            FULL JOIN cashier_list ON queue_list_sa.Cashier_id = cashier_list.cashier_id
-                            FULL JOIN teller_list ON queue_list_sa.Teller_id = teller_list.teller_id
-                            WHERE date(queue_list_sa.DATE_CREATED) = date('now')
-                            GROUP BY teller_list.teller_id
-                            ORDER BY queue_list_sa.queue_id DESC limit 4");
-                            
+                          $cashier = $conn->query("SELECT * FROM `teller_list` order by `teller_id` asc");
                             while($row = $cashier->fetchArray()):
                             ?>
-                            <div class="list-group-item" data-id="<?php echo $row['cashier_id'] ?>" style="display:none">
-                                <div class="fs-5 fw-2 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div>
-                                <div class="ps-4"><span class="serve-queue fs-4 fw-bold">10001 - Ivan Jay Almeria</span></div>
+                            <div class="list-group-item" data-id="<?php echo $row['teller_id']?>" style="display:none" >
+                            <center> <div class="fs-3 fw-2 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div></center>
+                            <center> <div ><span class="serve-queue fs-1 fw-bold">10001 - Ivan Jay Almeria</span></div></center>
                             </div>
-                            <?php endwhile; ?>                 
+                            <?php endwhile; ?>                  
                             </div>
                         </div>
                     </div>
@@ -96,13 +75,13 @@
     </div>
 </div>
 <script>
-    var websocket = new WebSocket("ws://<?php echo $_SERVER['SERVER_NAME'] ?>:2306/queuing/php-sockets.php"); 
+    var websocket = new WebSocket("ws://<?php echo $_SERVER['SERVER_NAME'] ?>:2306/swu-fpqsv1/php-sockets.php"); 
     websocket.onopen = function(event) { 
         console.log('socket is open!')
 		}
     websocket.onclose = function(event){
         console.log('socket has been closed!')
-    var websocket = new WebSocket("ws://<?php echo $_SERVER['SERVER_NAME'] ?>:2306/queuing/php-sockets.php"); 
+    var websocket = new WebSocket("ws://<?php echo $_SERVER['SERVER_NAME'] ?>:2306/swu-fpqsv1/php-sockets.php"); 
     };
     let tts = new SpeechSynthesisUtterance();
     tts.lang = "en"; 
@@ -155,6 +134,20 @@
         $('#serving-field,#action-field').height(container_height - 50)
         $('#serving-list').height($('#serving-list').parent().height() - 30)
     }
+    function _resize_elements_liv(){
+        var window_height = $(window).height()
+        var nav_height = $('nav').height()
+        var container_height = window_height - nav_height
+        $('#serving-field,#action-field').height(container_height - 50)
+        $('#serving-list-liv').height($('#serving-list-liv').parent().height() - 30)
+    }
+    function _resize_elements_sa(){
+        var window_height = $(window).height()
+        var nav_height = $('nav').height()
+        var container_height = window_height - nav_height
+        $('#serving-field,#action-field').height(container_height - 50)
+        $('#serving-list-sa').height($('#serving-list-sa').parent().height() - 30)
+    }
 
 // RAD
     function new_queue($cashier_id, $qid) {
@@ -190,7 +183,7 @@
 // RAD END
 
 // LIVE
-function new_queuelive($cashier_id,$qid){
+function new_queue_liv($cashier_id,$qid){
         $.ajax({
             url:'./../Actions.php?a=get_queue_liv',
             method:'POST',
@@ -201,13 +194,13 @@ function new_queuelive($cashier_id,$qid){
             },
             success:function(resp){
                 if(resp.status =='success'){
-                    var item = $('#serving-listlive').find('.list-group-item[data-id="'+$cashier_id+'"]')
+                    var item = $('#serving-list-liv').find('.list-group-item[data-id="'+$cashier_id+'"]')
                     var cashier =  item.find('.cashier-name').text()
                     var nitem = item.clone()
                     //nitem.find('.serve-queue').text(resp.queue+" - "+resp.name) with name
                         nitem.find('.serve-queue').text(resp.queue)
                         item.remove()
-                        $('#serving-listlive').prepend(nitem)
+                        $('#serving-list-liv').prepend(nitem)
                     if(resp.queue == ''){
                         nitem.hide('slow')
                     }else{
@@ -233,13 +226,13 @@ function new_queuelive($cashier_id,$qid){
             },
             success:function(resp){
                 if(resp.status =='success'){
-                    var item = $('#serving-list_sa').find('.list-group-item[data-id="'+$cashier_id+'"]')
+                    var item = $('#serving-list-sa').find('.list-group-item[data-id="'+$cashier_id+'"]')
                     var cashier =  item.find('.cashier-name').text()
                     var nitem = item.clone()
                     //nitem.find('.serve-queue').text(resp.queue+" - "+resp.name) with name
                         nitem.find('.serve-queue').text(resp.queue)
                         item.remove()
-                        $('#serving-list_sa').prepend(nitem)
+                        $('#serving-list-sa').prepend(nitem)
                     if(resp.queue == ''){
                         nitem.hide('slow')
                     }else{
@@ -272,7 +265,7 @@ function new_queuelive($cashier_id,$qid){
             if(!!Data.type && typeof Data.type != undefined && typeof Data.type != null){
                 if(Data.type == 'queue'){
                     new_queue(Data.cashier_id,Data.qid)
-                    new_queuelive(Data.cashier_id,Data.qid)
+                    new_queue_liv(Data.cashier_id,Data.qid)
                     new_queue_sa(Data.cashier_id,Data.qid)          
                 }
                 if(Data.type == 'test'){
