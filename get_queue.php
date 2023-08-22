@@ -47,7 +47,23 @@ if(isset($_GET['id'])){
         <div class="row justify-content-end">
             <div class="col-12">
                 <div class="card border-0 border-0  rounded-0 border-0 border-0">
-                    <div class="fs-1 fw-bold text-center"><?php echo $queue ?></div>
+                    <div class="fs-1 fw-bold text-center"><?php 
+                    if(isset($_GET['id'])){
+
+                        $qry = $conn->query("SELECT * FROM `queue_list` where queue_id = '$queue_id'");
+                        if($qry->fetchArray()){
+                            echo "RAD";
+                        }
+                        $qry = $conn->query("SELECT * FROM `queue_list_liv` where queue_id = '$queue_id'");
+                        if($qry->fetchArray()){
+                            echo "LIVE";
+                        }
+                        $qry = $conn->query("SELECT * FROM `queue_list_sa` where queue_id = '$queue_id'");
+                        if($qry->fetchArray()){
+                            echo "SA";
+                        }
+                    }
+                    ?>-<?php echo $queue ?></div>
                 
                     <center><?php echo $customer_name ?></center>
                 

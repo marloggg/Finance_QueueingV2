@@ -28,6 +28,21 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
         html,body{
             height:100%;
             width:100%;
+            margin: 0; 
+            overflow: hidden;             
+        }
+        body::before {
+            content: "";
+            background-image: url("./imageback.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            filter: blur(8px); /* Adjust the blur amount as needed */
+            z-index: -1; /* Place the pseudo-element behind other content */
         }
         .form-control.border-0{
             transition:border .2s cubic-bezier(0.4, 0, 1, 1);
@@ -96,7 +111,7 @@ if ($manualCutoffTime == 0) {
 ?>
 
                 <div class="row justify-content-center">
-                    <div class="col-md-7">
+                    <div class="col-md-8">
 
                         <div class="card rouded-0 shadow">
                             <div class="card-header rounded-0" style="display:<?php echo $cutoff; ?>;">
@@ -200,12 +215,7 @@ if ($manualCutoffTime == 0) {
             teller_id.selectedIndex = 0;
         })
 
-        // $(function nextFunction(teller_id) {
-        //     // You can use the selectedValue in this function
-        //     var teller_id = $("#teller_id").val();
-        //     // Perform further operations using the selected value
-        // })
-
+        
         $(function(){            
             $('.select2').select2({width:'100%'})
             $('#queue-form').submit(function(e){
@@ -264,84 +274,6 @@ if ($manualCutoffTime == 0) {
                     })
             })
         }) 
-
-//         $(function() {
-//     $('.select2').select2({ width: '100%' });
-
-//     $('#queue-form').submit(function(e) {
-//         e.preventDefault();
-//         var _this = $(this);
-//         _this.find('.pop-msg').remove();
-//         var el = $('<div>').addClass('alert pop-msg').hide();
-
-//         _this.find('button[type="submit"]').attr('disabled', true).text('Please wait...');
-
-//         // var nextFunction = determineNextFunction(); // Replace this with the actual logic to determine nextFunction value
-
-//         var url;
-//         switch (nextFunction) {
-//             case 1:
-//                 url = './Actions.php?a=save_queue';
-//                 break;
-//             case 2:
-//                 url = './Actions.php?a=save_queue_sa';
-//                 break;
-//             case 3: // Corrected the duplicated case value
-//                 url = './Actions.php?a=save_queue_live';
-//                 break;
-//         }
-
-//         $.ajax({
-//             url: url,
-//             method: 'POST',
-//             data: _this.serialize(),
-//             dataType: 'JSON',
-//             error: function(err) {
-//                 console.log(err);
-//                 handleAjaxError(el, _this);
-//             },
-//             success: function(resp) {
-//                 handleAjaxSuccess(resp, el, _this);
-//             },
-//             complete: function() {
-//                 _this.find('button[type="submit"]').attr('disabled', false);
-//             }
-//         });
-//     });
-// });
-
-//         function determineNextFunction() {
-//             // Replace this function with your logic to determine the correct nextFunction value
-//             // Return 1, 2, or 3 based on the condition
-//         }
-
-//         function handleAjaxError(el, _this) {
-//             el.addClass('alert-danger');
-//             el.text('An error occurred while saving data.');
-//             _this.find('button[type="submit"]').attr('disabled', false);
-//             _this.prepend(el);
-//             el.show('slow');
-//         }
-
-//         success:function(resp){
-//                             if(resp.status == 'success'){
-//                                 uni_modal("Your Queue","get_queue.php?success=true&id="+resp.id)
-//                                 $('#uni_modal').on('hide.bs.modal',function(e){
-//                                     location.reload()
-//                                 })
-//                             }else if(resp.status ='failed' && !!resp.msg){
-//                                 el.addClass('alert-'+resp.status)
-//                                 el.text(resp.msg)
-//                                 _this.prepend(el)
-//                                 el.show('slow')
-//                             }else{
-//                                 el.addClass('alert-'+resp.status)
-//                                 el.text("An Error occured.")
-//                                 _this.prepend(el)
-//                                 el.show('slow')
-//                             }
-//                             _this.find('button[type="submit"]').attr('disabled',false)
-//                         }
 
         
     </script>

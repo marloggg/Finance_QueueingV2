@@ -16,7 +16,7 @@
                             ?>
                             <div class="list-group-item" data-id="<?php echo $row['teller_id']?>" style="display:none" >
                             <center> <div class="fs-3 fw-2 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div></center>
-                            <center> <div ><span class="serve-queue fs-1 fw-bold">10001 - Ivan Jay Almeria</span></div></center>
+                            <center> <div ><span class="serve-queue fs-2 fw-bold">10001 - Ivan Jay Almeria</span></div></center>
                             </div>
                             <?php endwhile; ?> 
                         </div>                        
@@ -33,7 +33,7 @@
                             ?>
                             <div class="list-group-item" data-id="<?php echo $row['teller_id']?>" style="display:none" >
                             <center> <div class="fs-3 fw-2 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div></center>
-                            <center> <div ><span class="serve-queue fs-1 fw-bold">10001 - Ivan Jay Almeria</span></div></center>
+                            <center> <div ><span class="serve-queue fs-2 fw-bold">10001 - Ivan Jay Almeria</span></div></center>
                             </div>
                             <?php endwhile; ?>                             
                         </div>
@@ -50,7 +50,7 @@
                             ?>
                             <div class="list-group-item" data-id="<?php echo $row['teller_id']?>" style="display:none" >
                             <center> <div class="fs-3 fw-2 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div></center>
-                            <center> <div ><span class="serve-queue fs-1 fw-bold">10001 - Ivan Jay Almeria</span></div></center>
+                            <center> <div ><span class="serve-queue fs-2 fw-bold">10001 - Ivan Jay Almeria</span></div></center>
                             </div>
                             <?php endwhile; ?>                  
                             </div>
