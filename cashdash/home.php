@@ -8,7 +8,7 @@
     <style>
         /* Custom styles */
         body {
-            background-color: #DE401E;
+            background-color: #7c7c7c;
             overflow: hidden;
         }
         .navbar {
@@ -40,14 +40,13 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
         }
-        .btn-primary {
-            background-color: #199CE0;
-            border-color: #007BFF;
+        .btn-primary { 
             margin-right: 20px;
             font-size: 26px;
+            margin-top: 90px;
         }
         .btn-primary:hover {
-            background-color: #0056b3;
+            background-color: #9D0A0E;
             border-color: #0056b3;
         }
         

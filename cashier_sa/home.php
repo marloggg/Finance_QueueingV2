@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-     <div class="col-md-12 d-flex flex-row justify-content-center align-items-center" id="queue-numbers">
+    <div class="col-md-12 d-flex flex-row justify-content-center align-items-center" id="queue-numbers">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function updateQueueNumbers() {
@@ -30,7 +30,7 @@
         <div class="col-md-6 d-flex flex-column justify-content-center align-items-center" id="serving-field">
             <div class="card col-sm-8 shadow">
                 <div class="card-header">
-                    <h5 class="card-title text-center">Now Serving STUDENT ACCOUNT</h5>
+                    <h5 class="card-title text-center">Now Serving SA</h5>
                 </div>
                 <div class="card-body">
                     <div class="fs-1  my-2 fw-bold text-center"><span id="queue">-----</span></div>
@@ -59,10 +59,10 @@
 <script>
     var websocket = new WebSocket("ws://<?php echo $_SERVER['SERVER_NAME'] ?>:2306/swu-fpqsv1/php-sockets.php"); 
     websocket.onopen = function(event) { 
-    console.log('socket is open!')
+      console.log('socket is open!')
 		}
     websocket.onclose = function(event){
-    console.log('socket has been closed!')
+      console.log('socket has been closed!')
     var websocket = new WebSocket("ws://<?php echo $_SERVER['SERVER_NAME'] ?>:2306/swu-fpqsv1/php-sockets.php"); 
     };
     var in_queue = {};

@@ -47,21 +47,36 @@ if(isset($_GET['id'])){
         <div class="row justify-content-end">
             <div class="col-12">
                 <div class="card border-0 border-0  rounded-0 border-0 border-0">
-                    <div class="fs-1 fw-bold text-center"><?php 
+                    <div class="fs-1 fw-bold text-center">                    
+                    <?php 
                     if(isset($_GET['id'])){
+                        $label = null;
+                        $latestRecord = null;
 
-                        $qry = $conn->query("SELECT * FROM `queue_list` where queue_id = '$queue_id'");
-                        if($qry->fetchArray()){
-                            echo "RAD";
+                        // Query the "RAD" table
+                        $qry = $conn->query("SELECT * FROM `queue_list` where queue_id = '$queue_id' ORDER BY date_created DESC LIMIT 1");
+                        $row = $qry->fetchArray();
+                        if($row){
+                            $latestRecord = $row;
+                            $label = "RAD";
                         }
-                        $qry = $conn->query("SELECT * FROM `queue_list_liv` where queue_id = '$queue_id'");
-                        if($qry->fetchArray()){
-                            echo "LIVE";
+                        
+                        // Query the "LIVE" table
+                        $qry = $conn->query("SELECT * FROM `queue_list_liv` where queue_id = '$queue_id' ORDER BY date_created DESC LIMIT 1");
+                        $row = $qry->fetchArray();
+                        if($row && (!$latestRecord || $row['date_created'] > $latestRecord['date_created'])){
+                            $latestRecord = $row;
+                            $label = "LIVE";
                         }
-                        $qry = $conn->query("SELECT * FROM `queue_list_sa` where queue_id = '$queue_id'");
-                        if($qry->fetchArray()){
-                            echo "SA";
+                        
+                        // Query the "SA" table
+                        $qry = $conn->query("SELECT * FROM `queue_list_sa` where queue_id = '$queue_id' ORDER BY date_created DESC LIMIT 1");
+                        $row = $qry->fetchArray();
+                        if($row && (!$latestRecord || $row['date_created'] > $latestRecord['date_created'])){
+                            $label = "SA";
                         }
+                        
+                        echo $label;
                     }
                     ?>-<?php echo $queue ?></div>
                 
@@ -82,7 +97,7 @@ if(isset($_GET['id'])){
     </div>
 </div>
 <script>
-  $(function(){
+    $(function(){
     $('#print').click(function(){
         var _el = $('<div>')
         var _h = $('head').clone()

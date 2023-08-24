@@ -103,34 +103,34 @@ if ($manualCutoffTime == 0) {
         $buttonDisabled = '';
         $cutoff = "none";
     }
-} else {
-    $buttonDisabled = '';
-    $cutoff = "none";
-}
+    } else {
+        $buttonDisabled = '';
+        $cutoff = "none";
+    }
 //echo "Start Time: $buttonDisabled";
 ?>
 
                 <div class="row justify-content-center">
                     <div class="col-md-8">
 
-                        <div class="card rouded-0 shadow">
+                        <div class="card rouded-5 shadow">
                             <div class="card-header rounded-0" style="display:<?php echo $cutoff; ?>;">
                                 <div class="h5 card-title" style="color:red" >I'm sorry, the cutoff time has passed, and it is no longer possible to generate a queue number. </div>
                             </div>
                             <div class="card-header rounded-0">
-                                <div class="h5 card-title">Get your Queue Number Here.</div>
+                                <center class="h5 card-title" style="font-size: 30px; font-weight: bold;">Get your Queue Number Here.</center>
                             </div>
                             <div class="card-body rounded-0">
                                 <form action="" id="queue-form">
                                     <div class="form-group">
-                                        <label for="customer_name" class="control-label text-info">Enter your Name</label>
+                                        <label for="customer_name" style="font-size: 20px;">Enter your Name</label>
                                         <input type="text" id="customer_name" name="customer_name" autofocus autocomplete="off" type="submit" <?php echo $buttonDisabled; ?> class="form-control form-control-lg rounded-0 border-0 border-bottom" required>
                                     </div>
                                     <!-- <form action="" id="login-form"> -->
                                             <center style="margin-top: 2em; font-weight: bold; font-size: 20px;"><small></small></center>
                                             <div class="form-group">
-                                                <label for="teller_id" style="font-size: 18px;"class="control-label text-info">Select Transaction</label>
-                                                <select name="teller_id" id="teller_id" data-placeholder="Select" class="custom-select2 select2" required onclick="handleSelectionChange(this)">
+                                                <label for="teller_id" style="font-size: 20px;">Select Transaction</label>
+                                                <select name="teller_id" id="teller_id" data-placeholder="Select" class="custom-select2 select2" <?php echo $buttonDisabled; ?> required onclick="handleSelectionChange(this)">
                                                     <option type="submit" disabled selected></option>
                                                     <?php 
                                                     $cashier = $conn->query("SELECT * FROM `trasaction_list` where `status` = 1 order by `trasaction_name` asc");
@@ -141,8 +141,8 @@ if ($manualCutoffTime == 0) {
                                                 </select>
                                             </div>
                                                         
-                                            <div class="form-group text-center my-2">
-                                            <button style="margin-top: 1em;" class="btn-primary btn-lg btn col-sm-4 rounded-0" type="submit" <?php echo $buttonDisabled; ?>>Get Queue</button>
+                                            <div class="form-group text-center my-4">
+                                            <button style="margin-top: 2em;" class="btn-primary btn-lg btn col-sm-5 rounded-5" type="submit" <?php echo $buttonDisabled; ?>>Get Queue</button>
 
                                         <!-- </form>                                 -->
                                         

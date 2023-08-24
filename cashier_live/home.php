@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-     <div class="col-md-12 d-flex flex-row justify-content-center align-items-center" id="queue-numbers">
+    <div class="col-md-12 d-flex flex-row justify-content-center align-items-center" id="queue-numbers">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function updateQueueNumbers() {

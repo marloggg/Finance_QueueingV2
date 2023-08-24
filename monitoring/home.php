@@ -11,12 +11,12 @@
                     <div class="card-body h-100">
                     <div id="serving-list" class="list-group overflow-auto">
                             <?php 
-                          $cashier = $conn->query("SELECT * FROM `teller_list` order by `teller_id` asc");
+                            $cashier = $conn->query("SELECT * FROM `teller_list` order by `teller_id` asc");
                             while($row = $cashier->fetchArray()):
                             ?>
                             <div class="list-group-item" data-id="<?php echo $row['teller_id']?>" style="display:none" >
-                            <center> <div class="fs-3 fw-2 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div></center>
-                            <center> <div ><span class="serve-queue fs-2 fw-bold">10001 - Ivan Jay Almeria</span></div></center>
+                            <center> <div class="fs-4 fw-4 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div></center>
+                            <center> <div ><span class="serve-queue fs-3 fw-bold">10001 - Ivan Jay Almeria</span></div></center>
                             </div>
                             <?php endwhile; ?> 
                         </div>                        
@@ -28,12 +28,12 @@
                     <div class="card-body h-100">
                     <div id="serving-list-liv" class="list-group overflow-auto">
                             <?php 
-                          $cashier = $conn->query("SELECT * FROM `teller_list` order by `teller_id` asc");
+                            $cashier = $conn->query("SELECT * FROM `teller_list` order by `teller_id` asc");
                             while($row = $cashier->fetchArray()):
                             ?>
                             <div class="list-group-item" data-id="<?php echo $row['teller_id']?>" style="display:none" >
-                            <center> <div class="fs-3 fw-2 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div></center>
-                            <center> <div ><span class="serve-queue fs-2 fw-bold">10001 - Ivan Jay Almeria</span></div></center>
+                            <center> <div class="fs-4 fw-4 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div></center>
+                            <center> <div ><span class="serve-queue fs-3 fw-bold">10001 - Ivan Jay Almeria</span></div></center>
                             </div>
                             <?php endwhile; ?>                             
                         </div>
@@ -45,20 +45,21 @@
                     <div class="card-body h-100">
                     <div id="serving-list-sa" class="list-group overflow-auto">
                             <?php 
-                          $cashier = $conn->query("SELECT * FROM `teller_list` order by `teller_id` asc");
+                            $cashier = $conn->query("SELECT * FROM `teller_list` order by `teller_id` asc");
                             while($row = $cashier->fetchArray()):
                             ?>
                             <div class="list-group-item" data-id="<?php echo $row['teller_id']?>" style="display:none" >
-                            <center> <div class="fs-3 fw-2 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div></center>
-                            <center> <div ><span class="serve-queue fs-2 fw-bold">10001 - Ivan Jay Almeria</span></div></center>
+                            <center> <div class="fs-4 fw-4 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div></center>
+                            <center> <div ><span class="serve-queue fs-3 fw-bold">10001 - Ivan Jay Almeria</span></div></center>
                             </div>
                             <?php endwhile; ?>                  
                             </div>
                         </div>
                     </div>
+
                 </div>
 
-            <div class="col-md-7 d-flex flex-column justify-content-center align-items-center bg-dark bg-gradient text-light" id="action-field">
+                <div class="col-md-7 d-flex flex-column justify-content-center align-items-center bg-dark bg-gradient text-light" id="action-field">
                 <div class="col-auto flex-grow-1">
                 <?php 
                     $vid = scandir('./../video');
@@ -150,101 +151,103 @@
     }
 
 // RAD
-    function new_queue($cashier_id, $qid) {
-    $.ajax({
-        url: './../Actions.php?a=get_queue',
-        method: 'POST',
-        data: { cashier_id: $cashier_id, qid: $qid },
-        dataType: 'JSON',
-        error: err => {
-        console.log(err);
-        },
-        success: function (resp) {
-        if (resp.status == 'success') {
-            var item = $('#serving-list').find('.list-group-item[data-id="' + $cashier_id + '"]');
-            var cashier = item.find('.cashier-name').text();
-            var nitem = item.clone();
-            
-            nitem.find('.serve-queue').text(resp.queue);
-            item.remove();
-            $('#serving-list').prepend(nitem);
-            
-            if (resp.queue == '') {
-            nitem.hide('slow');
-            } else {
-            nitem.show('slow');
-            var message = "RAD NUMBER " + Math.abs(resp.queue) + "PLEASE PROCEED TO " + cashier + "";
-            speak(message);
-            }
-        }
-        }
-    });
-    }
-// RAD END
-
-// LIVE
-function new_queue_liv($cashier_id,$qid){
-        $.ajax({
-            url:'./../Actions.php?a=get_queue_liv',
-            method:'POST',
-            data:{cashier_id:$cashier_id,qid:$qid},
-            dataType:'JSON',
-            error:err=>{
-                console.log(err)
-            },
-            success:function(resp){
-                if(resp.status =='success'){
-                    var item = $('#serving-list-liv').find('.list-group-item[data-id="'+$cashier_id+'"]')
-                    var cashier =  item.find('.cashier-name').text()
-                    var nitem = item.clone()
-                    //nitem.find('.serve-queue').text(resp.queue+" - "+resp.name) with name
-                        nitem.find('.serve-queue').text(resp.queue)
-                        item.remove()
-                        $('#serving-list-liv').prepend(nitem)
-                    if(resp.queue == ''){
-                        nitem.hide('slow')
-                    }else{
-                        nitem.show('slow')
-                      //  speak("Queue Number "+(Math.abs(resp.queue))+resp.name+", Please proceed to "+cashier) with name
-                        speak("LIVE NUMBER"+(Math.abs(resp.queue))+", Please proceed to "+cashier)
+                    function new_queue($cashier_id, $qid) {
+                $.ajax({
+                    url: './../Actions.php?a=get_queue',
+                    method: 'POST',
+                    data: { cashier_id: $cashier_id, qid: $qid },
+                    dataType: 'JSON',
+                    error: err => {
+                    console.log(err);
+                    },
+                    success: function (resp) {
+                    if (resp.status == 'success') {
+                        var item = $('#serving-list').find('.list-group-item[data-id="' + $cashier_id + '"]');
+                        var cashier = item.find('.cashier-name').text();
+                        var nitem = item.clone();
+                        
+                        nitem.find('.serve-queue').text(resp.queue);
+                        item.remove();
+                        $('#serving-list').prepend(nitem);
+                        
+                        if (resp.queue == '') {
+                        nitem.hide('slow');
+                        } else {
+                        nitem.show('slow');
+                        var message = "RAD NUMBER " + Math.abs(resp.queue) + "!!!!!!!, PLEASE PROCEED TO " + cashier + "!!!!!!!!!!!!!";
+                        speak(message);
+                        }
                     }
-                }
-            }
-        })
-    }
-// LIVE END
-
-    // SA
-    function new_queue_sa($cashier_id,$qid){
-        $.ajax({
-            url:'./../Actions.php?a=get_queue_sa',
-            method:'POST',
-            data:{cashier_id:$cashier_id,qid:$qid},
-            dataType:'JSON',
-            error:err=>{
-                console.log(err)
-            },
-            success:function(resp){
-                if(resp.status =='success'){
-                    var item = $('#serving-list-sa').find('.list-group-item[data-id="'+$cashier_id+'"]')
-                    var cashier =  item.find('.cashier-name').text()
-                    var nitem = item.clone()
-                    //nitem.find('.serve-queue').text(resp.queue+" - "+resp.name) with name
-                        nitem.find('.serve-queue').text(resp.queue)
-                        item.remove()
-                        $('#serving-list-sa').prepend(nitem)
-                    if(resp.queue == ''){
-                        nitem.hide('slow')
-                    }else{
-                        nitem.show('slow')
-                      //  speak("Queue Number "+(Math.abs(resp.queue))+resp.name+", Please proceed to "+cashier) with name
-                        speak("STUDENT ACCOUNT NUMBER"+(Math.abs(resp.queue))+", Please proceed to "+cashier)
                     }
+                });
                 }
-            }
-        })
-    }
-    // SA END
+                // RAD END
+
+                // LIVE
+                function new_queue_liv($cashier_id, $qid) {
+                $.ajax({
+                    url: './../Actions.php?a=get_queue_liv',
+                    method: 'POST',
+                    data: { cashier_id: $cashier_id, qid: $qid },
+                    dataType: 'JSON',
+                    error: err => {
+                    console.log(err);
+                    },
+                    success: function (resp) {
+                    if (resp.status == 'success') {
+                        var item = $('#serving-list-liv').find('.list-group-item[data-id="' + $cashier_id + '"]');
+                        var cashier = item.find('.cashier-name').text();
+                        var nitem = item.clone();
+                        
+                        nitem.find('.serve-queue').text(resp.queue);
+                        item.remove();
+                        $('#serving-list-liv').prepend(nitem);
+                        
+                        if (resp.queue == '') {
+                        nitem.hide('slow');
+                        } else {
+                        nitem.show('slow');
+                        var message = "LIVE NUMBER " + Math.abs(resp.queue) + "!!!!!!!, PLEASE PROCEED TO " + cashier + "!!!!!!!!!!!!!";
+                        speak(message);
+                        }
+                    }
+                    }
+                });
+                }
+                // LIVE END
+
+                    // SA
+                    function new_queue_sa($cashier_id, $qid) {
+                $.ajax({
+                    url: './../Actions.php?a=get_queue_sa',
+                    method: 'POST',
+                    data: { cashier_id: $cashier_id, qid: $qid },
+                    dataType: 'JSON',
+                    error: err => {
+                    console.log(err);
+                    },
+                    success: function (resp) {
+                    if (resp.status == 'success') {
+                        var item = $('#serving-list-sa').find('.list-group-item[data-id="' + $cashier_id + '"]');
+                        var cashier = item.find('.cashier-name').text();
+                        var nitem = item.clone();
+                        
+                        nitem.find('.serve-queue').text(resp.queue);
+                        item.remove();
+                        $('#serving-list-sa').prepend(nitem);
+                        
+                        if (resp.queue == '') {
+                        nitem.hide('slow');
+                        } else {
+                        nitem.show('slow');
+                        var message = "STUDENT ACCOUNT NUMBER " + Math.abs(resp.queue) + "!!!!!!!, PLEASE PROCEED TO " + cashier + "!!!!!!!!!!!!!";
+                        speak(message);
+                        }
+                    }
+                    }
+                });
+                }
+            // SA END
     
     $(function(){
         setInterval(() => {
