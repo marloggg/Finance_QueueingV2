@@ -80,7 +80,7 @@ require_once('./../DBConnection.php');
                 error: (err) => {
   console.log(err);
   _el.addClass('alert alert-danger');
-  _el.text(`An error occurred: ${err.message}`);
+  _el.text(`Oops! Please select teller.`);
   _this.prepend(_el);
   _el.show('slow');
   _this.find('button').attr('disabled',false);
