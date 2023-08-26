@@ -210,9 +210,9 @@ if ($manualCutoffTime == 0) {
             var teller_id = $("#teller_id").val();
             // var selectedValue = selectElement.value;
             // var selectedTransactionId = selectedValue; // Assuming transaction_id is used
-            nextFunction(teller_id);
-            $(selectElement).val(null).trigger('change');
-            teller_id.selectedIndex = 0;
+            // nextFunction(teller_id);
+            // $(selectElement).val(null).trigger('change');
+            // teller_id.selectedIndex = 0;
         })
 
         

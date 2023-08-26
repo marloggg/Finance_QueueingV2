@@ -97,32 +97,55 @@ if(isset($_GET['id'])){
     </div>
 </div>
 <script>
-    $(function(){
-    $('#print').click(function(){
-        var _el = $('<div>')
-        var _h = $('head').clone()
-        var _div = $('<div>').css('text-align', 'center') // center the images
-        var _img1 = $('<img>').attr('src', './phinma.png').attr('alt', 'SWU Phinma Logo').attr('width', '50').attr('height', '50') // create the first image element
-        var _img2 = $('<img>').attr('src', './swu.png').attr('alt', 'SWU Phinma Logo').attr('width', '50').attr('height', '50') // create the second image element
-        _div.append(_img1).append(_img2) // append the images to the new div element
-        var _p = $('#outprint').clone()
-        _h.find('title').text("Queue Number - Print")
-        _el.append(_h)
-        _el.append(_div) // append the new div element with the images
-        _el.append(_p)
-        var nw = window.open('','_blank','width=700,height=500,top=75,left=200')
-            nw.document.write(_el.html())
-            nw.document.close()
+    $(function(){ 
+        $('#print').click(function(){
+                var imagePath = './images/'
+        $.ajax({
+    url: imagePath,
+    success: function (data) {
+        // Parse the HTML content to find image file names
+        var imageNames = [];
+        $(data).find("a:contains('.jpg'),a:contains('.png'),a:contains('.gif')").each(function () {
+        var filename = $(this).text();
+        imageNames.push(filename);
+        });
+
+        // Choose a random image from the list
+        var randomIndex = Math.floor(Math.random() * imageNames.length);
+        var randomImageName = imageNames[randomIndex];
+
+        // Construct the full path to the randomly selected image
+        var fullImagePath = imagePath + randomImageName;
+
+        // Create and display the image
+        var _img2 = $('<img>').attr('src', fullImagePath).attr('alt', 'SWU Phinma Logo').attr('width', '50').attr('height', '50');
+        $('body').append(_img2);
+    
+            var _el = $('<div>');
+            var _h = $('head').clone();
+            var _div = $('<div>').css('text-align', 'center');
+            var _img1 = $('<img>').attr('src', './phinma.png').attr('alt', 'SWU Phinma Logo').attr('width', '50').attr('height', '50');
+            //var _img2 = $('<img>').attr('src', './swu.png').attr('alt', 'SWU Phinma Logo').attr('width', '50').attr('height', '50');
+
+            _div.append(_img1).append(_img2);
+            var _p = $('#outprint').clone();
+            _h.find('title').text("Queue Number - Print");
+            _el.append(_h);
+            _el.append(_div);
+            _el.append(_p);
+            var nw = window.open('','_blank','width=700,height=500,top=75,left=200');
+            nw.document.write(_el.html());
+            nw.document.close();
             setTimeout(() => {
-                nw.print()
+                nw.print();
                 setTimeout(() => {
-                    nw.close()
-                    $('#uni_modal').modal('hide')
+                    nw.close();
+                    $('#uni_modal').modal('hide');
                 }, 200);
             }, 500);
-    })
-})
-
-
-
+        }
+        });
+    });
+});
 </script>
+

@@ -509,6 +509,31 @@ Class Actions extends DBConnection{
         }
         return json_encode($resp);
     }
+    function update_image() {
+        extract($_FILES);
+        $mime = mime_content_type($img['tmp_name']);
+        $allowedImageTypes = ['image/jpeg', 'image/png', 'image/gif']; // Add more allowed image types as needed
+    
+        if (in_array($mime, $allowedImageTypes)) {
+            $move = move_uploaded_file($img['tmp_name'], "./images/" . (time()) . "_{$img['name']}");
+            if ($move) {
+                $resp['status'] = 'success';
+                $_SESSION['flashdata']['type'] = 'success';
+                $_SESSION['flashdata']['msg'] = 'Image was successfully updated.';
+                if (is_file('./images/' . $_POST['image'])) {
+                    unlink('./images/' . $_POST['image']);
+                }
+            } else {
+                $resp['status'] = 'false';
+                $resp['msg'] = 'Unable to upload the image.';
+            }
+        } else {
+            $resp['status'] = 'false';
+            $resp['msg'] = 'Invalid image type.';
+        }
+    
+        return json_encode($resp);
+    }
 }
 $a = isset($_GET['a']) ?$_GET['a'] : '';
 $action = new Actions();
@@ -576,6 +601,9 @@ switch($a){
     break;
     case 'update_video':
         echo $action->update_video();
+    break;
+    case 'update_image':
+        echo $action->update_image();
     break;
     default:
     // default action here

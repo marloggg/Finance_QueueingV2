@@ -30,7 +30,11 @@ require_once('./../DBConnection.php');
    <div class="h-100 d-flex jsutify-content-center align-items-center">
        <div class='w-100'>
        <center><img src="./phinma.png" alt="SWU Phinma Logo" width="200" height="200">
-       <img src="./swu.png" alt="SWU Phinma Logo" width="200" height="200"></center>
+       <img src="<?php 
+    $imageFiles = scandir('./../images');
+    $image = isset($imageFiles[2]) ? './../images/' . $imageFiles[2] : '';
+    echo $image;
+?>" alt="SWU Phinma Logo" width="200" height="200"></center>
         <h3 class="py-5 text-center text-light">Cashier Queuing System - Cashier Side</h3>
         <div class="card my-3 col-md-4 offset-md-4">
             <div class="card-body">
