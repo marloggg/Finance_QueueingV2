@@ -58,7 +58,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('swu.png') no-repeat center center fixed;
+            background: url(<?php 
+        $imageFiles = scandir('./../images');
+        $image = isset($imageFiles[2]) ? './../images/' . $imageFiles[2] : '';
+        echo $image;
+        ?>) no-repeat center center fixed;
             filter: blur(5px); /* Adjust the blur level as needed */
             z-index: -1;
             background-size: 45%;

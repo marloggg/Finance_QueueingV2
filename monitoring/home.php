@@ -50,7 +50,7 @@
                             ?>
                             <div class="list-group-item" data-id="<?php echo $row['teller_id']?>" style="display:none" >
                             <center> <div class="fs-4 fw-4 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div></center>
-                            <center> <div ><span class="serve-queue fs-3 fw-bold">10001 - Ivan Jay Almeria</span></div></center>
+                            <center> <div ><span class="serve-queue fs-3 fw-bold">10001 - Jairo</span></div></center>
                             </div>
                             <?php endwhile; ?>                  
                             </div>
@@ -76,6 +76,9 @@
     </div>
 </div>
 <script>
+    var video = document.getElementById("loop-vid");
+    video.volume = 0.05;
+
     var websocket = new WebSocket("ws://<?php echo $_SERVER['SERVER_NAME'] ?>:2306/swu-fpqsv1/php-sockets.php"); 
     websocket.onopen = function(event) { 
         console.log('socket is open!')

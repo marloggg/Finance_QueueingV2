@@ -28,12 +28,12 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 <body class="bg-dark bg-gradient">
    <div class="h-100 d-flex jsutify-content-center align-items-center">
        <div class='w-100'>
-       <center><img src="./phinma.png" alt="SWU Phinma Logo" width="200" height="200">
-       <img src="<?php 
-    $imageFiles = scandir('./../images');
-    $image = isset($imageFiles[2]) ? './../images/' . $imageFiles[2] : '';
-    echo $image;
-?>" alt="SWU Phinma Logo" width="200" height="200"></center>
+        <center><img src="./phinma.png" alt="SWU Phinma Logo" width="200" height="200">
+        <img src="<?php 
+        $imageFiles = scandir('./../images');
+        $image = isset($imageFiles[2]) ? './../images/' . $imageFiles[2] : '';
+        echo $image;
+        ?>" alt="SWU Phinma Logo" width="200" height="200"></center>
        <h1 class="py-5 text-center text-light">Cashier Queuing System</h1>
         <h2 class="py-4 text-center text-light"> Administrator</h2>
         <div class="card my-3 col-md-4 offset-md-4">
