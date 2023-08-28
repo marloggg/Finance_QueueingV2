@@ -52,8 +52,8 @@ require_once('./../DBConnection.php');
                         </select>
                     </div>
                     <div class="form-group d-flex w-100 justify-content-between align-items-center">
-                        <!-- <a href="./../">Admin</a> -->
-                        <button class="btn btn-sm btn-primary rounded-0 my-1">Login</button>
+                        <a href=""></a>
+                        <button class="btn btn-sml btn-primary rounded-0 my-1">Login</button>
                     </div>
                 </form>
             </div>
