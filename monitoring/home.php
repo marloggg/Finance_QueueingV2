@@ -15,8 +15,8 @@
                             while($row = $cashier->fetchArray()):
                             ?>
                             <div class="list-group-item" data-id="<?php echo $row['teller_id']?>" style="display:none" >
-                            <center> <div class="fs-4 fw-4 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div></center>
-                            <center> <div ><span class="serve-queue fs-3 fw-bold">10001 - Ivan Jay Almeria</span></div></center>
+                            <center> <div class="fs-4 bold fw-4 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div></center>
+                            <center> <div ><span class="fs-3 fw-bold">RAD-</span><span class="serve-queue fs-3 fw-bold">10001 - Ivan Jay Almeria</span></div></center>
                             </div>
                             <?php endwhile; ?> 
                         </div>                        
@@ -33,7 +33,7 @@
                             ?>
                             <div class="list-group-item" data-id="<?php echo $row['teller_id']?>" style="display:none" >
                             <center> <div class="fs-4 fw-4 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div></center>
-                            <center> <div ><span class="serve-queue fs-3 fw-bold">10001 - Ivan Jay Almeria</span></div></center>
+                            <center> <div ><span class="fs-3 fw-bold">LIVE-</span><span class="serve-queue fs-3 fw-bold">10001 - Ivan Jay Almeria</span></div></center>
                             </div>
                             <?php endwhile; ?>                             
                         </div>
@@ -50,7 +50,7 @@
                             ?>
                             <div class="list-group-item" data-id="<?php echo $row['teller_id']?>" style="display:none" >
                             <center> <div class="fs-4 fw-4 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div></center>
-                            <center> <div ><span class="serve-queue fs-3 fw-bold">10001 - Jairo</span></div></center>
+                            <center> <div ><span class="fs-3 fw-bold">SA-</span><span class="serve-queue fs-3 fw-bold">10001 - Jairo</span></div></center>
                             </div>
                             <?php endwhile; ?>                  
                             </div>
@@ -260,18 +260,26 @@
             $(this).hide()
             $('#monitor-holder').removeClass('d-none')
             _resize_elements()
+            _resize_elements_liv()
+            _resize_elements_sa()
             vid_loop.play()
         })
         $(window).resize(function(){
             _resize_elements()
+            _resize_elements_liv()
+            _resize_elements_sa()
         })
 
         websocket.onmessage = function(event) {
 			var Data = JSON.parse(event.data);
             if(!!Data.type && typeof Data.type != undefined && typeof Data.type != null){
-                if(Data.type == 'queue'){
+                if(Data.type == 'queue_rad'){
                     new_queue(Data.cashier_id,Data.qid)
+                }
+                if(Data.type == 'queue_live'){
                     new_queue_liv(Data.cashier_id,Data.qid)
+                }
+                if(Data.type == 'queue_sa'){
                     new_queue_sa(Data.cashier_id,Data.qid)          
                 }
                 if(Data.type == 'test'){

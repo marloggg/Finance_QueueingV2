@@ -13,7 +13,7 @@ Class DBConnection extends SQLite3{
     function __construct(){
         $this->open(db_file);
         $this->createFunction('md5', 'my_udf_md5');
-        $this->exec("PRAGMA foreign_keys = ON;");
+        // $this->exec("PRAGMA foreign_keys = ON;");
 
         $this->exec("CREATE TABLE IF NOT EXISTS `superadmin_list` (
             `admin_id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,

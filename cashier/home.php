@@ -95,7 +95,7 @@
     }
     function queue(){
         $('#queue').text(in_queue.queue || "-----")
-        websocket.send(JSON.stringify({type:'queue',cashier_id:'<?php echo $_SESSION['teller_id'] ?>',qid:in_queue.queue_id}))
+        websocket.send(JSON.stringify({type:'queue_rad',cashier_id:'<?php echo $_SESSION['teller_id'] ?>',qid:in_queue.queue_id}))
     }
     
     _resize_elements();

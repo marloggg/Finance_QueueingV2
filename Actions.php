@@ -95,6 +95,12 @@ Class Actions extends DBConnection{
                 $this->query("UPDATE `teller_list` set log_status = 2 where teller_id  = {$_SESSION['teller_id']}");
         header("location:./cashier_live");
     }
+    function c_logout_sa(){
+        session_destroy();
+                $this->query("UPDATE `cashier_list` set log_status = 2 where cashier_id  = {$_SESSION['cashier_id']}");
+                $this->query("UPDATE `teller_list` set log_status = 2 where teller_id  = {$_SESSION['teller_id']}");
+        header("location:./cashier_sa");
+    }
     /*function update_credentials(){
         extract($_POST);
         $data = "";
@@ -555,6 +561,9 @@ switch($a){
     break;
     case 'c_logout_liv':
         echo $action->c_logout_liv();
+    break;
+    case 'c_logout_sa':
+        echo $action->c_logout_sa();
     break;
     case 'update_Acredentials':
         echo $action->update_Acredentials();

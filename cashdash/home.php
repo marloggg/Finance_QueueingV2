@@ -58,11 +58,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url(<?php 
-        $imageFiles = scandir('./../images');
-        $image = isset($imageFiles[2]) ? './../images/' . $imageFiles[2] : '';
-        echo $image;
-        ?>) no-repeat center center fixed;
+            background-color: #495057;
             filter: blur(5px); /* Adjust the blur level as needed */
             z-index: -1;
             background-size: 45%;
@@ -71,7 +67,7 @@
 </head>
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="#">SWU Finance Queuing System</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,9 +87,10 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> -->
 
     <!-- Background Image and Buttons -->
+    
     <div class="background">
         <div class="overlay"></div>
         <div class="container h-100">

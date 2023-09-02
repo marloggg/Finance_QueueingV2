@@ -156,7 +156,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
                     <?php echo $_SESSION['lastname'] ?>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="./../Actions.php?a=c_logout">Logout</a></li>
+                    <li><a class="dropdown-item" href="./../Actions.php?a=c_logout_sa">Logout</a></li>
                 </ul>
             </div>
             </div>
