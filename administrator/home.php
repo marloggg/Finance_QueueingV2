@@ -1,4 +1,19 @@
 
+<div class="modal" id="videoModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Video Preview</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <video controls id="previewVideo" style="width: 100%; height: auto;"></video>
+            </div>
+        </div>
+    </div>
+</div>
 <h3><center>Welcome to Cashier Queuing System</center></h3>
 <hr>
 <div class="col-12">
@@ -14,7 +29,7 @@
             </div>
             <div class="row justify-content-center my-2">
                 <center>
-                    <button class="btn btn-primary" type="submit">Update</button>
+                    <button class="btn btn-primary" type="submit">Upload</button>
                 </center>
             </div>
         </form>
@@ -26,6 +41,7 @@
             <thead>
                 <tr>
                     <th>Video Name</th>
+                    <th>Action</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -100,6 +116,7 @@
                     var row = $('<tr>');
                     row.append('<td>' + video.name + '</td>');
                     row.append('<td><button class="btn btn-danger delete-video" data-id="' + video.id + '">Delete</button></td>');
+                    row.append('<td><button class="btn btn-success view-video" data-id="' + video.id + '">View</button></td>');
                     videoList.append(row);
                 });
             }
@@ -112,6 +129,8 @@
     // Event handler for deleting videos
     $('#video-list').on('click', '.delete-video', function() {
         var videoId = $(this).data('id');
+        var confirmDeletion = confirm("Are you sure you want to delete this video?");
+        if (confirmDeletion) {
         $.ajax({
             url: '../administrator/delete_video.php?id=' + videoId, // Replace with the appropriate URL
             method: 'DELETE',
@@ -124,7 +143,15 @@
                 }
             }
         });
+    }
     });
 });
-</script>
+// Event handler for clicking the "View" button to preview the video
+    $('#video-list').on('click', '.view-video', function() {
+        var videoName = $(this).closest('tr').find('td:first').text();
+        var videoPath = './../video/' + videoName;
+        $('#previewVideo').attr('src', videoPath);
+        $('#videoModal').modal('show');
+    });
 
+</script>
