@@ -51,14 +51,57 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
             box-shadow:unset !important;
             border-color:var(--bs-info) !important;
         }
+        .form-check-input {
+        position: absolute;
+        opacity: 5;
+        cursor: pointer;
+    }
+
+    .radio-group {
+        display: flex;
+        flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
+        justify-content: flex-start; /* Align items to the left within the container */
+    }
+
+    /* Style for the custom radio button */
+    .custom-radio {
+        display: inline-block;
+        width: 750px; /* Set a fixed width for the radio buttons */
+        height: 65px; /* Set a fixed height for the radio buttons */
+        padding: 10px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        margin: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for hover effect */
+    }
+
+    .custom-radio:hover {
+        background-color: #8E0B16;
+        color: #FFFFFF; /* Change the background color on hover */
+        transform: scale(1.05); /* Scale up on hover */
+    }
+
+    /* Style for the selected custom radio button */
+    .form-check-input:checked + .custom-radio {
+        background-color: #007bff;
+        color: #fff;
+        border-color: #007bff;
+    }
+
+    /* Style for the selected custom radio button on hover */
+    .form-check-input:checked + .custom-radio:hover {
+        background-color: #0056b3;
+    }
+
     </style>
 </head>
 <body>
     <main>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-gradient" id="topNavBar">
         <div class="container">
-            <a class="navbar-brand" href="./">
-            Queuing - Customer Registration
+            <a class="navbar-brand" href="./queue_registration.php">
+            Southwestern University
             </a>
         </div>
     </nav>
@@ -123,28 +166,32 @@ if ($manualCutoffTime == 0) {
                             <div class="card-body rounded-0">
                                 <form action="" id="queue-form">
                                     <div class="form-group">
-                                        <label for="customer_name" style="font-size: 20px;">Enter your Name</label>
+                                        <label for="customer_name" style="font-size: 20px; margin-bottom: 15px;">Enter your Name</label>
                                         <input type="text" id="customer_name" name="customer_name" autofocus autocomplete="off" type="submit" <?php echo $buttonDisabled; ?> class="form-control form-control-lg rounded-0 border-0 border-bottom" required>
                                     </div>
                                     <!-- <form action="" id="login-form"> -->
                                             <center style="margin-top: 2em; font-weight: bold; font-size: 20px;"><small></small></center>
-                                            <div class="form-group">
-                                                <label for="teller_id" style="font-size: 20px;">Select Transaction</label>
-                                                <select name="teller_id" id="teller_id" data-placeholder="Select" class="custom-select2 select2" <?php echo $buttonDisabled; ?> required onclick="handleSelectionChange(this)">
-                                                    <option type="submit" disabled selected></option>
-                                                    <?php 
-                                                    $cashier = $conn->query("SELECT * FROM `trasaction_list` where `status` = 1 order by `trasaction_name` asc");
-                                                    while($row = $cashier->fetchArray()):
-                                                    ?>
-                                                    <option value="<?php echo $row['trasaction_id'] ?>"><?php echo $row['trasaction_name'] ?></option>
-                                                    <?php endwhile; ?>
-                                                </select>
+                                            <!-- Replace this part in your HTML code -->
+                                    <div class="form-group">
+                                        <label for="teller_id" style="font-size: 20px; margin-bottom: 15px;">Select Transaction</label>
+                                        <div class="radio-group" <?php echo $buttonDisabled; ?>>
+                                            <?php 
+                                            $cashier = $conn->query("SELECT * FROM `trasaction_list` where `status` = 1 order by `trasaction_name` asc");
+                                            while($row = $cashier->fetchArray()):
+                                            ?>
+                                            <div class="form-check">
+                                                <input class="form-check-input " type="radio" name="teller_id" id="teller_id_<?php echo $row['trasaction_id']; ?>" value="<?php echo $row['trasaction_id']; ?>" required>
+                                                <label class="form-check-label custom-radio" for="teller_id_<?php echo $row['trasaction_id']; ?>"><?php echo $row['trasaction_name']; ?></label>
                                             </div>
+                                            <?php endwhile; ?>
+                                        </div>
+                                    </div>
+
                                                         
                                             <div class="form-group text-center my-4">
                                             <button style="margin-top: 2em;" class="btn-primary btn-lg btn col-sm-5 rounded-5" type="submit" <?php echo $buttonDisabled; ?>>Get Queue</button>
 
-                                        <!-- </form>                                 -->
+                                        <!-- </form> -->
                                         
                                     </div>
                                 </form>
@@ -204,41 +251,39 @@ if ($manualCutoffTime == 0) {
         </div>
     </div>
     <script>
+        
 
 
-        $(function handleSelectionChange(){
-            var teller_id = $("#teller_id").val();
-            // var selectedValue = selectElement.value;
-            // var selectedTransactionId = selectedValue; // Assuming transaction_id is used
-            // nextFunction(teller_id);
-            // $(selectElement).val(null).trigger('change');
-            // teller_id.selectedIndex = 0;
-        })
+        // $(function handleSelectionChange(){
+        //     var teller_id = $("#teller_id").val();
+        // })
 
         
-        $(function(){            
-            $('.select2').select2({width:'100%'})
-            $('#queue-form').submit(function(e){
-                e.preventDefault()
-                var _this = $(this)
-                _this.find('.pop-msg').remove()
-                var el = $('<div>')
+        // Remove the existing handleSelectionChange function
+
+            $(function(){
+                $('.select2').select2({width:'100%'})
+                $('#queue-form').submit(function(e){
+                    e.preventDefault()
+                    var _this = $(this)
+                    _this.find('.pop-msg').remove()
+                    var el = $('<div>')
                     el.addClass('alert pop-msg')
                     el.hide()
                     _this.find('button[type="submit"]').attr('disabled',true).text('Please wait...')
-                var teller_id = $("#teller_id").val();
-                var url;
-                switch (parseInt(teller_id)) {
-                    case 1:
-                        url = './Actions.php?a=save_queue';
-                        break;
-                    case 3:
-                        url = './Actions.php?a=save_queue_sa';
-                        break;
-                    case 2: 
-                        url = './Actions.php?a=save_queue_liv';
-                        break;
-                }
+                    var teller_id = $("input[name='teller_id']:checked").val(); // Get the selected radio button value
+                    var url;
+                    switch (parseInt(teller_id)) {
+                        case 1:
+                            url = './Actions.php?a=save_queue';
+                            break;
+                        case 3:
+                            url = './Actions.php?a=save_queue_sa';
+                            break;
+                        case 2: 
+                            url = './Actions.php?a=save_queue_liv';
+                            break;
+                    }
                     $.ajax({
                         url: url,
                         method:'POST',
@@ -272,8 +317,9 @@ if ($manualCutoffTime == 0) {
                             _this.find('button[type="submit"]').attr('disabled',false)
                         }
                     })
+                })
             })
-        }) 
+
 
         
     </script>
