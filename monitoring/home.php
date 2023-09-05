@@ -62,10 +62,16 @@
                 <div class="col-md-7 d-flex flex-column justify-content-center align-items-center bg-dark bg-gradient text-light" id="action-field">
                 <div class="col-auto flex-grow-1">
                 <?php 
-                    $vid = scandir('./../video');
-                    $video = isset($vid[2]) ? $vid[2]: "";
-                ?>
-                    <video id="loop-vid" src="./../video/<?php echo $video ?>" loop class="w-100 h-100"></video>
+                    $vid = scandir('../video/');
+                    $videoList = [];
+
+                    foreach ($vid as $file) {
+                        if (pathinfo($file, PATHINFO_EXTENSION) === 'mp4') {
+                            $videoList[] = $file;
+                        }
+                    }
+                    ?>
+                    <video id="loop-vid" src="../video/<?php echo $videoList[0]; ?>" class="w-100 h-100"></video>
                 </div>
                 <div id="datetimefield" class="w-100  col-auto">
                     <div class="fs-1 text-center time fw-bold"></div>
@@ -78,6 +84,27 @@
 <script>
     var video = document.getElementById("loop-vid");
     video.volume = 0.05;
+
+    var videoList = <?php echo json_encode($videoList); ?>;
+    var currentVideoIndex = 0;
+
+    function playNextVideo() {
+        if (videoList.length === 0) {
+            return; // No videos to play
+        }
+        video.src = "../video/" + videoList[currentVideoIndex];
+        video.play();
+        currentVideoIndex = (currentVideoIndex + 1) % videoList.length;
+    }
+
+    video.onended = function () {
+        playNextVideo(); // Play the next video when the current one ends
+    };
+
+    // Initially start playing the first video
+    playNextVideo();
+
+
 
     var websocket = new WebSocket("ws://<?php echo $_SERVER['SERVER_NAME'] ?>:2306/swu-fpqsv1/php-sockets.php"); 
     websocket.onopen = function(event) { 
