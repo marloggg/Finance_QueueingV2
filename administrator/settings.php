@@ -10,7 +10,7 @@ if(isset($_GET['id'])){
 
 <div class="card">
     <div class="card-header d-flex justify-content-between">
-        <h3 class="card-title">Settings</h3>
+        <h3 class="card-title">Other</h3>
     </div>
 
 

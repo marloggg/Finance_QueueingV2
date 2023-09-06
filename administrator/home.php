@@ -9,6 +9,9 @@
     <li class="nav-item">
         <a class="nav-link" id="logo-tab" data-toggle="tab" href="#logo-settings">Logo Settings</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" id="sName-tab" data-toggle="tab" href="#sName-settings">Name Settings</a>
+    </li>
 </ul>
 
 <!-- Content sections for each setting -->
@@ -98,6 +101,16 @@
         </form>
     </div>
 </div>
+</div>
+<!-- insert here -->
+<div class="tab-pane fade" id="sName-settings">
+        <!-- Logo settings content goes here -->
+        <div class="col-12">
+            <div class="col-md-12">
+                <!-- Add your logo settings content here -->
+                <p>School Name Settings Here</p>
+            </div>
+        </div>
     </div>
 </div>
 

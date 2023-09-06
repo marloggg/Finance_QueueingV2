@@ -121,11 +121,12 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
     </style>
 </head>
 <body>
-    <nav class="nav navbar navbar-light bg-primary bg-gradient py-2 text-light fs-4 fw-bold">
-        <marquee behavior="" direction="">
-            <span class="mx-5"></span>
-            <span class="mx-5"></span>
-        </marquee>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-gradient" id="topNavBar">
+        <div class="container">
+            <a class="navbar-brand" href="../monitoring/">
+            Southwestern University
+            </a>
+        </div>
     </nav>
     <main>
     <div class="container-fluid py-3" id="page-container">

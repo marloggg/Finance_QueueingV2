@@ -53,7 +53,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
         }
         .form-check-input {
         position: absolute;
-        opacity: 5;
+        opacity: 0;
         cursor: pointer;
     }
 
