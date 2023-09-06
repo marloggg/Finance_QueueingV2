@@ -12,6 +12,9 @@
     <li class="nav-item">
         <a class="nav-link" id="sName-tab" data-toggle="tab" href="#sName-settings">Name Settings</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" id="theme-tab" data-toggle="tab" href="#theme-settings">Theme Settings</a>
+    </li>
 </ul>
 
 <!-- Content sections for each setting -->
@@ -112,9 +115,21 @@
             </div>
         </div>
     </div>
+    <div class="tab-pane fade" id="theme-settings">
+        <!-- Logo settings content goes here -->
+        <div class="col-12">
+            <div class="col-md-12">
+                <!-- Add your logo settings content here -->
+                <p>Theme Settings Here</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- insert here -->
+<!-- always left one div -->
 </div>
 
-<!-- insert here -->
+
 
 
 <script>
