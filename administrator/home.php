@@ -1,3 +1,13 @@
+<style>
+    .text-box {
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 5px;
+    }
+</style>
+
 <h3><center>Welcome to Cashier Queuing System</center></h3>
 <hr>
 
@@ -111,12 +121,13 @@
         <div class="col-md-12">
             <?php
             $file_path = '../text/text_content.txt';
-
             if (file_exists($file_path)) {
                 $storedText = file_get_contents($file_path);
                 if (!empty($storedText)) {
                     echo '<center>';
-                    echo '<div style="height: 15%; width: 25%;">' . $storedText . '</div>';
+                    echo '<div class="text-box" style="font-size: 40px; font-weight: bold;">';
+                    echo '<div style="height: 20%; width: 100%;">' . $storedText . '</div>';
+                    echo '</div>';
                     echo '</center>';
                 } else {
                     echo '<center><div>No text available.</div></center>';

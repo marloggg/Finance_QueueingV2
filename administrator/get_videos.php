@@ -1,5 +1,5 @@
 <?php
-$videoFiles = scandir('./../video');
+$videoFiles = scandir('../video');
 $videoList = [];
 
 foreach ($videoFiles as $file) {

@@ -544,6 +544,7 @@ Class Actions extends DBConnection{
         $text_input = isset($_POST['text_input']) ? $_POST['text_input'] : "";
     
         // You can add validation or processing logic for the text input here
+        $text_input = strtoupper($text_input);
     
         if (!empty($text_input)) {
             // Specify the file path where you want to store the text
