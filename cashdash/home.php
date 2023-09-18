@@ -27,7 +27,11 @@
             position: relative;
             text-align: center;
             color: #fff;
-            /* background: url('swu.png') no-repeat center center fixed; */
+            background: url('<?php 
+            $imageFiles = scandir('./../images');
+            $image = isset($imageFiles[2]) ? './../images/' . $imageFiles[2] : '';
+            echo $image;
+            ?>') no-repeat center center fixed;
             background-size: 45%;
             height: 100vh;
             font-size: 20px;
@@ -58,7 +62,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #495057;
+            background-color: rgba(255, 255, 255, 0.88);
             filter: blur(5px); /* Adjust the blur level as needed */
             z-index: -1;
             background-size: 45%;
@@ -96,7 +100,19 @@
         <div class="container h-100">
             <div class="row h-100 justify-content-center align-items-center">
                 <div class="col-md-6 text-center">
-                    <h1><b>Welcome to SWU Finance</b></h1>
+                    <h1><b>Welcome to <?php
+                    $file_path = '../text/text_content.txt';
+                    if (file_exists($file_path)) {
+                        $storedText = file_get_contents($file_path);
+                        if (!empty($storedText)) {
+                            echo $storedText ;
+                        } else {
+                            echo '<center><div>No text available.</div></center>';
+                        }
+                    } else {
+                        echo '<center><div>Text file not found.</div></center>';
+                    }
+                    ?> Finance</b></h1>
                     <p>Please choose the type of <b>CASHIER</b></p>
                     <?php
                         // PHP code for dynamic buttons

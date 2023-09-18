@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 require_once('DBConnection.php');
@@ -72,8 +73,8 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
     /* Style for the custom radio button */
     .custom-radio {
         display: inline-block;
-        width: 750px; /* Set a fixed width for the radio buttons */
-        height: 65px; /* Set a fixed height for the radio buttons */
+        width: 100%; /* Set a fixed width for the radio buttons */
+        height: 89%; /* Set a fixed height for the radio buttons */
         padding: 10px;
         border: 2px solid #ccc;
         border-radius: 5px;
