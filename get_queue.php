@@ -47,7 +47,20 @@ if(isset($_GET['id'])){
         <div class="row justify-content-end">
             <div class="col-12">
                 <div class="card border-0 border-0  rounded-0 border-0 border-0">
-                    <div class="fs-1 fw-bold text-center">                    
+                    <div class="fs-3 fw-bold text-center">   
+                    <center><?php
+                    $file_path = './text/text_content.txt';
+                    if (file_exists($file_path)) {
+                        $storedText = file_get_contents($file_path);
+                        if (!empty($storedText)) {
+                            echo $storedText ;
+                        } else {
+                            echo '<center><div>No text available.</div></center>';
+                        }
+                    } else {
+                        echo '<center><div>Text file not found.</div></center>';
+                    }
+                    ?></center>                
                     <?php 
                     if(isset($_GET['id'])){
                         $label = null;
@@ -78,6 +91,7 @@ if(isset($_GET['id'])){
                         
                         echo $label;
                     }
+                    
                     ?>-<?php echo $queue ?></div>
                 
                     <center><?php echo $customer_name ?></center>
