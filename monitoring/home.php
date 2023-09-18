@@ -237,7 +237,7 @@
                         nitem.hide('slow');
                         } else {
                         nitem.show('slow');
-                        var message = "LIVE NUMBER " + Math.abs(resp.queue) + "!!!!!!!, PLEASE PROCEED TO " + cashier + "!!!!!!!!!!!!!";
+                        var message = "LIVE' NUMBER " + Math.abs(resp.queue) + "!!!!!!!, PLEASE PROCEED TO " + cashier + "!!!!!!!!!!!!!";
                         speak(message);
                         }
                     }
