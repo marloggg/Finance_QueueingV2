@@ -101,7 +101,20 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-gradient" id="topNavBar">
         <div class="container">
             <a class="navbar-brand" href="./queue_registration.php">
-            Southwestern University
+            <?php
+            $file_path = './text/text_content.txt';
+
+            if (file_exists($file_path)) {
+                $storedText = file_get_contents($file_path);
+                if (!empty($storedText)) {
+                    echo $storedText ;
+                } else {
+                    echo '<center><div>No text available.</div></center>';
+                }
+            } else {
+                echo '<center><div>Text file not found.</div></center>';
+            }
+            ?>
             </a>
         </div>
     </nav>

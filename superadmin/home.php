@@ -36,11 +36,11 @@
     $imageFiles = scandir('./../images');
     $image = isset($imageFiles[2]) ? $imageFiles[2] : ""; // Check if index 2 exists before accessing
     if ($image):
-?>
+    ?>
     <center><img src="./../images/<?php echo $image; ?>" alt="Uploaded Image" style="height: 15%; width: 25%;" class="bg-dark"></center>
-<?php 
+    <?php 
     endif; 
-?>
+    ?>
 
         <form action="" id="upload-formimage">
             <input type="hidden" name="image" value="<?php echo $image; ?>">

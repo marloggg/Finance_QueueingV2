@@ -74,7 +74,7 @@
     
     <div class="tab-pane fade" id="logo-settings">
         <!-- Logo settings content goes here -->
-        <div class="col-12">
+    <div class="col-12">
     <div class="col-md-12">
     <?php 
     $imageFiles = scandir('./../images');
@@ -96,7 +96,7 @@
             </div>
             <div class="row justify-content-center my-2">
                 <center>
-                    <button class="btn btn-primary" type="submit">Update</button>
+                    <button class="btn btn-primary" type="submit">Upload</button>
                     
 
                 </center>
@@ -105,16 +105,47 @@
     </div>
 </div>
 </div>
-<!-- insert here -->
+<!-- Name Settings -->
 <div class="tab-pane fade" id="sName-settings">
-        <!-- Logo settings content goes here -->
-        <div class="col-12">
-            <div class="col-md-12">
-                <!-- Add your logo settings content here -->
-                <p>School Name Settings Here</p>
-            </div>
+    <div class="col-12">
+        <div class="col-md-12">
+            <?php
+            $file_path = '../text/text_content.txt';
+
+            if (file_exists($file_path)) {
+                $storedText = file_get_contents($file_path);
+                if (!empty($storedText)) {
+                    echo '<center>';
+                    echo '<div style="height: 15%; width: 25%;">' . $storedText . '</div>';
+                    echo '</center>';
+                } else {
+                    echo '<center><div>No text available.</div></center>';
+                }
+            } else {
+                echo '<center><div>Text file not found.</div></center>';
+            }
+            ?>
+
+            <form action="" id="upload-formtext">
+                <input type="hidden" name="text_input" value="<?php echo $textInput; ?>">
+                <div class="row justify-content-center my-2">
+                    <div class="form-group col-md-5">
+                        <label for="text_input" class="control-label">Enter School name</label>
+                        <input type="text" name="text_input" id="text_input" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row justify-content-center my-2">
+                    <center>
+                        <button class="btn btn-primary" type="submit">Upload School Name</button>
+                    </center>
+                </div>
+            </form>
         </div>
     </div>
+</div>
+
+
+    <!-- Theme Settings -->
     <div class="tab-pane fade" id="theme-settings">
         <!-- Logo settings content goes here -->
         <div class="col-12">
@@ -295,6 +326,58 @@
             })
         })
     })
+
+    //Name
+    $(function() {
+    $('#upload-formtext').submit(function(e) {
+        e.preventDefault();
+        $('.pop_msg').remove();
+        var _this = $(this);
+        var _el = $('<div>').addClass('pop_msg');
+        _this.find('button').attr('disabled', true);
+        _this.find('button[type="submit"]').text('Submitting text...');
+
+        $.ajax({
+            url: './../Actions.php?a=update_text',
+            data: new FormData($(this)[0]),
+            cache: false,
+            contentType: false,
+            processData: false,
+            method: 'POST',
+            type: 'POST',
+            dataType: 'json',
+            error: function(err) {
+                console.log(err);
+                _el.addClass('alert alert-danger');
+                _el.text("An error occurred. Please refresh the page.");
+                _this.prepend(_el);
+                _el.show('slow');
+                _this.find('button').attr('disabled', false);
+                _this.find('button[type="submit"]').text('Submit Text');
+            },
+            success: function(resp) {
+                if (resp.status == 'success') {
+                    // Update the HTML content to display the submitted text
+                    $('#uploaded_text').text(resp.storedText);
+
+                    _el.addClass('alert alert-success');
+                    location.reload()
+                } else {
+                    _el.addClass('alert alert-danger');
+                }
+                _el.text(resp.msg);
+
+                _el.hide();
+                _this.prepend(_el);
+                _el.show('slow');
+                _this.find('button').attr('disabled', false);
+                _this.find('button[type="submit"]').text('Submit Text');
+            }
+        });
+    });
+});
+
+
     
     // tab
     $(document).ready(function() {
@@ -305,7 +388,6 @@
     $('#upload-form').submit(function(e) {
         e.preventDefault();        
     });
-
-
+    
 
     </script>

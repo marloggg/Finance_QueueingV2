@@ -540,6 +540,34 @@ Class Actions extends DBConnection{
     
         return json_encode($resp);
     }
+    function update_text() {
+        $text_input = isset($_POST['text_input']) ? $_POST['text_input'] : "";
+    
+        // You can add validation or processing logic for the text input here
+    
+        if (!empty($text_input)) {
+            // Specify the file path where you want to store the text
+            $file_path = './text/text_content.txt';
+    
+            // Write the user text input to the file
+            if (file_put_contents($file_path, $text_input)) {
+                // Text was successfully updated in the file.
+                $resp['status'] = 'success';
+                $_SESSION['flashdata']['type'] = 'success';
+                $_SESSION['flashdata']['msg'] = 'Text was successfully updated.';
+            } else {
+                $resp['status'] = 'false';
+                $resp['msg'] = 'Unable to update the text.';
+            }
+        } else {
+            $resp['status'] = 'false';
+            $resp['msg'] = 'Text input was empty.';
+        }
+    
+        return json_encode($resp);
+    }
+    
+    
 }
 $a = isset($_GET['a']) ?$_GET['a'] : '';
 $action = new Actions();
@@ -613,6 +641,9 @@ switch($a){
     break;
     case 'update_image':
         echo $action->update_image();
+    break;
+    case 'update_text':
+        echo $action->update_text();
     break;
     default:
     // default action here
