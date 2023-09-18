@@ -32,10 +32,16 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
             overflow: hidden;             
         }
         body::before {
+            background-color: gray;
             content: "";
-            background-image: url("./imageback.jpg");
-            background-size: cover;
+            background-image: url("<?php 
+                                    $imageFiles = scandir('././images');
+                                    $image = isset($imageFiles[2]) ? '././images/' . $imageFiles[2] : '';
+                                    echo $image;
+                                    ?>");
+            background-size: contain;
             background-repeat: no-repeat;
+            background-position: center center;
             position: absolute;
             top: 0;
             left: 0;
@@ -168,7 +174,7 @@ if ($manualCutoffTime == 0) {
                 <div class="row justify-content-center">
                     <div class="col-md-8">
 
-                        <div class="card rouded-5 shadow">
+                        <div class="card rouded-5 shadow" style="background-color: rgba(255, 255, 255, 0.88);">
                             <div class="card-header rounded-0" style="display:<?php echo $cutoff; ?>;">
                                 <div class="h5 card-title" style="color:red" >I'm sorry, the cutoff time has passed, and it is no longer possible to generate a queue number. </div>
                             </div>
@@ -178,14 +184,14 @@ if ($manualCutoffTime == 0) {
                             <div class="card-body rounded-0">
                                 <form action="" id="queue-form">
                                     <div class="form-group">
-                                        <label for="customer_name" style="font-size: 20px; margin-bottom: 15px;">Enter your Name</label>
-                                        <input type="text" id="customer_name" name="customer_name" autofocus autocomplete="off" type="submit" <?php echo $buttonDisabled; ?> class="form-control form-control-lg rounded-0 border-0 border-bottom" required>
+                                        <label for="customer_name" style="font-size: 20px; margin-bottom: 15px;"><b>Enter your Name</b></label>
+                                        <input type="text" id="customer_name" name="customer_name" autofocus autocomplete="off" type="submit" style="background-color: rgba(255, 255, 255, 0.5);"<?php echo $buttonDisabled; ?> class="form-control form-control-lg rounded-0 border-0 border-bottom" required>
                                     </div>
                                     <!-- <form action="" id="login-form"> -->
                                             <center style="margin-top: 2em; font-weight: bold; font-size: 20px;"><small></small></center>
                                             <!-- Replace this part in your HTML code -->
                                     <div class="form-group">
-                                        <label for="teller_id" style="font-size: 20px; margin-bottom: 15px;">Select Transaction</label>
+                                        <label for="teller_id" style="font-size: 20px; margin-bottom: 15px;"><b>Select Transaction</b></label>
                                         <div class="radio-group" <?php echo $buttonDisabled; ?>>
                                             <?php 
                                             $cashier = $conn->query("SELECT * FROM `trasaction_list` where `status` = 1 order by `trasaction_name` asc");
