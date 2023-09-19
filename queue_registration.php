@@ -193,20 +193,30 @@ if ($manualCutoffTime == 0) {
                                             <!-- Replace this part in your HTML code -->
                                     <div class="form-group">
                                         <label for="teller_id" style="font-size: 20px; margin-bottom: 15px;"><b>Select Transaction</b></label>
-                                        <div class="radio-group" <?php echo $buttonDisabled; ?>>
-                                            <?php 
-                                            $cashier = $conn->query("SELECT * FROM `trasaction_list` where `status` = 1 order by `trasaction_name` asc");
-                                            while($row = $cashier->fetchArray()):
-                                            ?>
-                                            <div class="form-check">
-                                                <input class="form-check-input " type="radio" name="teller_id" id="teller_id_<?php echo $row['trasaction_id']; ?>" value="<?php echo $row['trasaction_id']; ?>" required>
-                                                <label class="form-check-label custom-radio" for="teller_id_<?php echo $row['trasaction_id']; ?>"><?php echo $row['trasaction_name']; ?></label>
-                                            </div>
-                                            <?php endwhile; ?>
-                                        </div>
-                                    </div>
-
-                                                        
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php 
+                                                $cashier = $conn->query("SELECT * FROM `trasaction_list` where `status` = 1 order by `trasaction_name` asc");
+                                                while($row = $cashier->fetchArray()):
+                                                ?>
+                                                <tr>
+                                                    <td>
+                                                        <input class="form-check-input" type="radio" name="teller_id" id="teller_id_<?php echo $row['trasaction_id']; ?>" value="<?php echo $row['trasaction_id']; ?>" required>
+                                                    </td>
+                                                    <td>
+                                                        <label class="form-check-label custom-radio" for="teller_id_<?php echo $row['trasaction_id']; ?>"><?php echo $row['trasaction_name']; ?></label>
+                                                    </td>
+                                                </tr>
+                                                <?php endwhile; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>                                                        
                                             <div class="form-group text-center my-4">
                                             <button style="margin-top: 2em;" class="btn-primary btn-lg btn col-sm-5 rounded-5" type="submit" <?php echo $buttonDisabled; ?>>Get Queue</button>
 
