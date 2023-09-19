@@ -63,18 +63,11 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
         opacity: 0;
         cursor: pointer;
     }
-
-    .radio-group {
-        display: flex;
-        flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
-        justify-content: flex-start; /* Align items to the left within the container */
-    }
-
     /* Style for the custom radio button */
     .custom-radio {
         display: inline-block;
         width: 100%; /* Set a fixed width for the radio buttons */
-        height: 89%; /* Set a fixed height for the radio buttons */
+        height: 100%; /* Set a fixed height for the radio buttons */
         padding: 10px;
         border: 2px solid #ccc;
         border-radius: 5px;
@@ -94,6 +87,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
         background-color: #007bff;
         color: #fff;
         border-color: #007bff;
+        transform: scale(1.02);
     }
 
     /* Style for the selected custom radio button on hover */
@@ -193,29 +187,26 @@ if ($manualCutoffTime == 0) {
                                             <!-- Replace this part in your HTML code -->
                                     <div class="form-group">
                                         <label for="teller_id" style="font-size: 20px; margin-bottom: 15px;"><b>Select Transaction</b></label>
+                                        
+                                            
                                         <table>
-                                            <thead>
-                                                <tr>
-                                                    <th></th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php 
-                                                $cashier = $conn->query("SELECT * FROM `trasaction_list` where `status` = 1 order by `trasaction_name` asc");
-                                                while($row = $cashier->fetchArray()):
-                                                ?>
-                                                <tr>
-                                                    <td>
-                                                        <input class="form-check-input" type="radio" name="teller_id" id="teller_id_<?php echo $row['trasaction_id']; ?>" value="<?php echo $row['trasaction_id']; ?>" required>
-                                                    </td>
-                                                    <td>
-                                                        <label class="form-check-label custom-radio" for="teller_id_<?php echo $row['trasaction_id']; ?>"><?php echo $row['trasaction_name']; ?></label>
-                                                    </td>
-                                                </tr>
-                                                <?php endwhile; ?>
-                                            </tbody>
-                                        </table>
+                                            <tr>
+                                                <td>
+                                                    <div <?php echo $buttonDisabled; ?>>
+                                                        <?php 
+                                                        $cashier = $conn->query("SELECT * FROM `trasaction_list` where `status` = 1 order by `trasaction_name` asc");
+                                                        while($row = $cashier->fetchArray()):
+                                                        ?>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input " type="radio" name="teller_id" id="teller_id_<?php echo $row['trasaction_id']; ?>" value="<?php echo $row['trasaction_id']; ?>" required>
+                                                            <label class="form-check-label custom-radio" for="teller_id_<?php echo $row['trasaction_id']; ?>"><?php echo $row['trasaction_name']; ?></label>
+                                                        </div>
+                                                        <?php endwhile; ?>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>                                    
+                                    
                                     </div>                                                        
                                             <div class="form-group text-center my-4">
                                             <button style="margin-top: 2em;" class="btn-primary btn-lg btn col-sm-5 rounded-5" type="submit" <?php echo $buttonDisabled; ?>>Get Queue</button>
