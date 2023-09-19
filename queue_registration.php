@@ -66,7 +66,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
     /* Style for the custom radio button */
     .custom-radio {
         display: inline-block;
-        width: 100%; /* Set a fixed width for the radio buttons */
+        width: 95%; /* Set a fixed width for the radio buttons */
         height: 100%; /* Set a fixed height for the radio buttons */
         padding: 10px;
         border: 2px solid #ccc;
@@ -174,13 +174,13 @@ if ($manualCutoffTime == 0) {
                                 <div class="h5 card-title" style="color:red" >I'm sorry, the cutoff time has passed, and it is no longer possible to generate a queue number. </div>
                             </div>
                             <div class="card-header rounded-0">
-                                <center class="h5 card-title" style="font-size: 30px; font-weight: bold;">Get your Queue Number Here.</center>
+                                <center class="h5 card-title" style="font-size: 30px; font-weight: bold;">Get your Queue Number Here</center>
                             </div>
                             <div class="card-body rounded-0">
                                 <form action="" id="queue-form">
                                     <div class="form-group">
                                         <label for="customer_name" style="font-size: 20px; margin-bottom: 15px;"><b>Enter your Name</b></label>
-                                        <input type="text" id="customer_name" name="customer_name" autofocus autocomplete="off" type="submit" style="background-color: rgba(255, 255, 255, 0.5);"<?php echo $buttonDisabled; ?> class="form-control form-control-lg rounded-0 border-0 border-bottom" required>
+                                        <input type="text" id="customer_name" name="customer_name" autofocus autocomplete="off" type="submit" style="background-color: rgba(255, 255, 255, 0.8);"<?php echo $buttonDisabled; ?> class="form-control form-control-lg rounded-0 border-0 border-bottom" required>
                                     </div>
                                     <!-- <form action="" id="login-form"> -->
                                             <center style="margin-top: 2em; font-weight: bold; font-size: 20px;"><small></small></center>
