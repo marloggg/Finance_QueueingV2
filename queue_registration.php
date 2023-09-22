@@ -23,6 +23,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
     <script src="./select2/js/select2.min.js"></script>
     <script src="./js/script.js"></script>
     <style>
+        
         :root{
             --bs-success-rgb:71, 222, 152 !important;
         }
@@ -77,7 +78,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
     }
 
     .custom-radio:hover {
-        background-color: #8E0B16;
+        background-color: #808080;
         color: #FFFFFF; /* Change the background color on hover */
         transform: scale(1.05); /* Scale up on hover */
     }
@@ -96,10 +97,23 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
     }
 
     </style>
+    <?php
+    $file_path = './text/text_navcolor.txt';
+    if (file_exists($file_path) && ($storedText = file_get_contents($file_path))) {
+        echo '<style>';
+        echo '#topNavBar {';
+        echo '  flex: 0 1 auto;';
+        echo '  background-color: ' . $storedText . ';'; // Set the background color here
+        echo '}';
+        echo '</style>';
+    } else {
+        echo '<center><div>File not found or empty.</div></center>';
+    }
+    ?>
 </head>
 <body>
     <main>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-gradient" id="topNavBar">
+    <nav class="navbar navbar-expand-lg navbar-dark " id="topNavBar">
         <div class="container">
             <a class="navbar-brand" href="./queue_registration.php">
             <?php

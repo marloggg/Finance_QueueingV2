@@ -42,10 +42,10 @@
         <div class="col-md-6 d-flex flex-column justify-content-center align-items-center" id="action-field">
             <div class="w-100 row row-cols-sm-1 row-cols-md-2 row-cols-xl-3">
                 <div class="col">
-                    <button id="next_queue" class="btn btn-flat btn-primary rounded-0 btn-lg"><i class="fa fa-forward"></i> Next</button>
+                    <button id="next_queue" class="btn btn-flat btn-primary rounded-5 btn-lg"><i class="fa fa-forward"></i> Next</button>
                 </div>
                 <div class="col">
-                    <button id="notify" class="btn btn-flat btn-secondary rounded-0 btn-lg"><i class="fa fa-bullhorn"></i> Notify</button>
+                    <button id="notify" class="btn btn-flat btn-secondary rounded-5 btn-lg"><i class="fa fa-bullhorn"></i> Notify</button>
                 </div>
             </div>
         </div>

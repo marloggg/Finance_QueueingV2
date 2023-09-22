@@ -43,12 +43,27 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 
 
 
+    
+    <?php
+    $file_path = '../text/text_navcolor.txt';
+    if (file_exists($file_path) && ($storedText = file_get_contents($file_path))) {
+        echo '<style>';
+        echo '#topNavBar {';
+        echo '  flex: 0 1 auto;';
+        echo '  background-color: ' . $storedText . ';'; // Set the background color here
+        echo '}';
+        echo '</style>';
+    } else {
+        echo '<center><div>File not found or empty.</div></center>';
+    }
+    ?>
 
 
     <style>
         :root{
             --bs-success-rgb:71, 222, 152 !important;
         }
+        
         html,body{
             height:100%;
             width:100%;
@@ -62,9 +77,10 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
             flex: 1 1 auto; 
             overflow:auto;
         }
-        #topNavBar{
-            flex: 0 1 auto; 
-        }
+        /* #topNavBar{
+            flex: 0 1 auto;
+            background-color: #fd7e14;
+        } */
         .thumbnail-img{
             width:50px;
             height:50px;
@@ -210,7 +226,7 @@ input:checked + .slider:before {
 </head>
 <body>
     <main>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary " id="topNavBar">
+    <nav class="navbar navbar-expand-lg navbar-dark  " id="topNavBar">
         <div class="container">
             <a class="navbar-brand" href="./">
             Queuing

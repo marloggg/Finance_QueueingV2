@@ -40,7 +40,27 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
         html,body{
             height:100%;
             width:100%;
-            background-color: #c9c9c9;
+            margin: 0; 
+            overflow: hidden;             
+        }
+        body::before {
+            background-color: gray;
+            content: "";
+            background-image: url("<?php 
+                                    $imageFiles = scandir('.././images');
+                                    $image = isset($imageFiles[2]) ? '.././images/' . $imageFiles[2] : '';
+                                    echo $image;
+                                    ?>");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            filter: blur(8px); /* Adjust the blur amount as needed */
+            z-index: -1; /* Place the pseudo-element behind other content */
         }
         main{
             height:100%;
