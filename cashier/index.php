@@ -152,10 +152,23 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
             padding: 0px 2px !important;
         }
     </style>
+    <?php
+    $file_path = '../text/text_navcolor.txt';
+    if (file_exists($file_path) && ($storedText = file_get_contents($file_path))) {
+        echo '<style>';
+        echo '#topNavBar {';
+        echo '  flex: 0 1 auto;';
+        echo '  background-color: ' . $storedText . ';'; // Set the background color here
+        echo '}';
+        echo '</style>';
+    } else {
+        echo '<center><div>File not found or empty.</div></center>';
+    }
+    ?>
 </head>
 <body>
     <main>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-gradient" id="topNavBar">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient" id="topNavBar">
         <div class="container">
             <a class="navbar-brand" href="./">
             Queuing for RAD

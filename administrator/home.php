@@ -158,15 +158,42 @@
 
     <!-- Theme Settings -->
     <div class="tab-pane fade" id="theme-settings">
-        <!-- Logo settings content goes here -->
-        <div class="col-12">
-            <div class="col-md-12">
-                <!-- Add your logo settings content here -->
-                <p>Theme Settings Here</p>
-            </div>
+    <!-- Logo settings content goes here -->
+    <div class="col-12">
+        <div class="col-md-12">
+            <!-- Add your logo settings content here -->
+            <p style="font-size: 16px; color: #333;"> <!-- Example inline styles -->
+                <?php
+                $colorFilePath = "../text/text_navcolor.txt"; // Relative path to the text file
+                $labelStyle = "font-weight: bold;"; // Define label style
+                $inputStyle = "width: 200px;"; // Define input style
+                $submitButtonStyle = "background-color: #007bff; color: #fff; border: none; padding: 5px 10px;"; // Define submit button style
+
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    if (isset($_POST['color'])) {
+                        $selectedColor = $_POST['color'];
+
+                        // Save the selected color to the text file
+                        file_put_contents($colorFilePath, $selectedColor);
+
+                        echo "<p>You selected the color: <span style='color:$selectedColor;'>$selectedColor</span></p>";
+                    } else {
+                        echo "<p>No color selected.</p>";
+                    }
+                }
+                ?>
+
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                    <label for="color" style="<?php echo $labelStyle; ?>">Select a Color for Navigation Bar:</label>
+                    <input type="color" id="color" name="color" style="<?php echo $inputStyle; ?>">
+                    <input type="submit" value="Submit" style="<?php echo $submitButtonStyle; ?>">
+                </form>
+            </p>
         </div>
     </div>
 </div>
+
+
 <!-- insert here -->
 <!-- always left one div -->
 </div>

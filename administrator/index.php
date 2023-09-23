@@ -28,7 +28,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 
     <script src="./../js/jquery-3.6.0.min.js"></script>
     <script src="./../js/popper.min.js"></script>
-   <script src="./../js/bootstrap.min.js"></script>
+    <script src="./../js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -40,6 +40,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
     <script src="./../Font-Awesome-master/js/all.min.js"></script>
     <script src="./../select2/js/select2.min.js"></script>
     <script src="./../js/script.js"></script>
+    
 
 
 
@@ -60,6 +61,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 
 
     <style>
+        
         :root{
             --bs-success-rgb:71, 222, 152 !important;
         }
