@@ -26,6 +26,8 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
     <link rel="stylesheet" href="./../css/bootstrap.css">
     <link rel="stylesheet" href="./../select2/css/select2.min.css">
 
+    <link rel="shortcut icon" type= "x-icon" href="admin.png">
+
     <script src="./../js/jquery-3.6.0.min.js"></script>
     <script src="./../js/popper.min.js"></script>
     <script src="./../js/bootstrap.min.js"></script>

@@ -23,7 +23,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
     <script src="./../js/script.js"></script>
     <style>
         :root{
-            --bs-success-rgb:71, 222, 152 !important;
+            --bs-success-rgb:222, 222, 222 !important;
         }
         html,body{
             height:100%;

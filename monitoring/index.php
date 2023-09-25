@@ -21,6 +21,11 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
     <script src="./../Font-Awesome-master/js/all.min.js"></script>
     <script src="./../select2/js/select2.min.js"></script>
     <script src="./../js/script.js"></script>
+    <link rel="shortcut icon" type= "x-icon" href="<?php 
+                                    $imageFiles = scandir('.././images');
+                                    $image = isset($imageFiles[2]) ? '.././images/' . $imageFiles[2] : '';
+                                    echo $image;
+                                    ?>">
     <style>
         :root{
             --bs-success-rgb:71, 222, 152 !important;
@@ -138,18 +143,22 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
         <div class="container">
             <a class="navbar-brand" href="../monitoring/">
             <center style="font-size: 30px; font-weight: bold;"><?php
-                    $file_path = '../text/text_content.txt';
-                    if (file_exists($file_path)) {
-                        $storedText = file_get_contents($file_path);
-                        if (!empty($storedText)) {
-                            echo $storedText ;
-                        } else {
-                            echo '<center><div>No text available.</div></center>';
-                        }
-                    } else {
-                        echo '<center><div>Text file not found.</div></center>';
-                    }
-                    ?></center>
+            $file_path = '../text/text_content.txt';
+            if (file_exists($file_path)) {
+                $storedText = file_get_contents($file_path);
+                if (!empty($storedText)) {
+                    $fontColorFilePath = "../text/text_fontcolor.txt"; // Relative path to the font color text file
+                    $selectedFontColor = file_get_contents($fontColorFilePath);
+                    
+                    // Add the selected font color to the inline style
+                    echo "<center><div style='color: $selectedFontColor;'>$storedText</div></center>";
+                } else {
+                    echo '<center><div>No text available.</div></center>';
+                }
+            } else {
+                echo '<center><div>Text file not found.</div></center>';
+            }
+            ?></center>
             </a>
         </div>
     </nav>

@@ -33,6 +33,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
     <script src="./../Font-Awesome-master/js/all.min.js"></script>
     <script src="./../select2/js/select2.min.js"></script>
     <script src="./../js/script.js"></script>
+    <link rel="shortcut icon" type= "x-icon" href="cashier.png">
     <style>
         :root{
             --bs-success-rgb:71, 222, 152 !important;

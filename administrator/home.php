@@ -164,19 +164,23 @@
             <!-- Add your logo settings content here -->
             <p style="font-size: 16px; color: #333;"> <!-- Example inline styles -->
                 <?php
-                $colorFilePath = "../text/text_navcolor.txt"; // Relative path to the text file
+                $navColorFilePath = "../text/text_navcolor.txt"; // Relative path to the navigation bar color text file
+                $fontColorFilePath = "../text/text_fontcolor.txt"; // Relative path to the font color text file
                 $labelStyle = "font-weight: bold;"; // Define label style
-                $inputStyle = "width: 200px;"; // Define input style
+                $inputStyle = "width: 60px;"; // Define input style
                 $submitButtonStyle = "background-color: #007bff; color: #fff; border: none; padding: 5px 10px;"; // Define submit button style
 
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                    if (isset($_POST['color'])) {
-                        $selectedColor = $_POST['color'];
+                    if (isset($_POST['nav_color']) && isset($_POST['font_color'])) {
+                        $selectedNavColor = $_POST['nav_color'];
+                        $selectedFontColor = $_POST['font_color'];
 
-                        // Save the selected color to the text file
-                        file_put_contents($colorFilePath, $selectedColor);
+                        // Save the selected colors to their respective text files
+                        file_put_contents($navColorFilePath, $selectedNavColor);
+                        file_put_contents($fontColorFilePath, $selectedFontColor);
 
-                        echo "<p>You selected the color: <span style='color:$selectedColor;'>$selectedColor</span></p>";
+                        echo "<p>You selected the navigation bar color: <span style='color:$selectedNavColor;'>$selectedNavColor</span></p>";
+                        echo "<p>You selected the font color: <span style='color:$selectedFontColor;'>$selectedFontColor</span></p>";
                     } else {
                         echo "<p>No color selected.</p>";
                     }
@@ -184,14 +188,26 @@
                 ?>
 
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                    <label for="color" style="<?php echo $labelStyle; ?>">Select a Color for Navigation Bar:</label>
-                    <input type="color" id="color" name="color" style="<?php echo $inputStyle; ?>">
-                    <input type="submit" value="Submit" style="<?php echo $submitButtonStyle; ?>">
+                    <label for="nav_color" style="<?php echo $labelStyle; ?>">Select a Color for Navigation Bar:</label>
+                    <input type="color" id="nav_color" name="nav_color" style="<?php echo $inputStyle; ?>" value="<?php echo $selectedNavColor; ?>">
+                    
+                    <br>
+                    <br>
+                    
+                    <label for="font_color" style="<?php echo $labelStyle; ?>">Select a Font Color:</label>
+                    <input type="color" id="font_color" name="font_color" style="<?php echo $inputStyle; ?>" value="<?php echo $selectedFontColor; ?>">
+
+                    <br>
+                    <br>
+                    
+                    <input class="btn btn-primary" type="submit" value="Submit" style="<?php echo $submitButtonStyle; ?>">
                 </form>
             </p>
         </div>
     </div>
 </div>
+
+
 
 
 <!-- insert here -->
