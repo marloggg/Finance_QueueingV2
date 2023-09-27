@@ -152,6 +152,28 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
             font-size: 10px;
             padding: 0px 2px !important;
         }
+        .navbar-dark .navbar-nav .nav-link {
+            color: <?php
+                    $fontColorFilePath = "../text/text_fontcolor.txt"; // Relative path to the font color text file
+                    if (file_exists($fontColorFilePath)) {
+                        $selectedFontColor = file_get_contents($fontColorFilePath);
+                        echo "$selectedFontColor";
+                    } else {
+                        echo 'Font color file not found.';
+                    }
+                    ?>; /* Replace with your desired color code */
+        }
+        .navbar-dark .navbar-brand {
+        color: <?php
+                    $fontColorFilePath = "../text/text_fontcolor.txt"; // Relative path to the font color text file
+                    if (file_exists($fontColorFilePath)) {
+                        $selectedFontColor = file_get_contents($fontColorFilePath);
+                        echo "$selectedFontColor";
+                    } else {
+                        echo 'Font color file not found.';
+                    }
+                    ?>; /* Replace with your desired color code */
+        }
     </style>
     <?php
     $file_path = '../text/text_navcolor.txt';
@@ -186,7 +208,17 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
             </div>
             <div>
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle bg-transparent  text-light border-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-secondary dropdown-toggle bg-transparent border-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  style="color: 
+                    <?php
+                    $fontColorFilePath = "../text/text_fontcolor.txt"; // Relative path to the font color text file
+                    if (file_exists($fontColorFilePath)) {
+                        $selectedFontColor = file_get_contents($fontColorFilePath);
+                        echo "$selectedFontColor";
+                    } else {
+                        echo 'Font color file not found.';
+                    }
+                    ?>
+                    ">
                     <?php echo $_SESSION['lastname'] ?>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
