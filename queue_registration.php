@@ -54,7 +54,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
             left: 0;
             width: 100%;
             height: 100%;
-            filter: blur(8px); /* Adjust the blur amount as needed */
+            filter: blur(2px); /* Adjust the blur amount as needed */
             z-index: -1; /* Place the pseudo-element behind other content */
         }
         .form-control.border-0{
@@ -77,13 +77,23 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
         padding: 10px;
         border: 2px solid #ccc;
         border-radius: 5px;
+        background: rgba(255, 255, 255, 0.70);
         margin: 5px;
         cursor: pointer;
         transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for hover effect */
     }
 
+    /* hover color */
     .custom-radio:hover {
-        background-color: #808080;
+        background-color: <?php
+                    $fontColorFilePath = "./text/text_navcolor.txt"; // Relative path to the font color text file
+                    if (file_exists($fontColorFilePath)) {
+                        $selectedFontColor = file_get_contents($fontColorFilePath);
+                        echo "$selectedFontColor";
+                    } else {
+                        echo 'Font color file not found.';
+                    }
+                    ?>;
         color: #FFFFFF; /* Change the background color on hover */
         transform: scale(1.05); /* Scale up on hover */
     }
@@ -100,6 +110,107 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
     .form-check-input:checked + .custom-radio:hover {
         background-color: #0056b3;
     }
+
+/* For extra small screens (up to 575px) */
+@media (max-width: 575px) {
+    .form-group {
+        font-size: 10px; /* Decrease the font size for small screens */
+    }
+    .form-groups {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%; /* Adjust the maximum width as needed */
+}
+
+    .custom-radio {
+        padding: 5px; /* Adjust padding for smaller radio buttons */
+    }
+    .btn-primary {
+        font-size: 14px; /* Decrease button font size for small screens */
+    }
+    .card-title{
+        font-size: 14px;
+    }
+}
+
+/* For small screens (576px to 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .form-group {
+        font-size: 10px; /* Decrease the font size for small screens */
+        width: 100% !important;
+    }
+    .custom-radio {
+        padding: 5px; /* Adjust padding for smaller radio buttons */
+    }
+    .btn-primary {
+        font-size: 14px; /* Decrease button font size for small screens */
+    }
+}
+
+/* For medium screens (768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .form-group {
+        font-size: 20px; /* Decrease the font size for small screens */
+        width: 100% !important;
+    }
+    .custom-radio {
+        padding: 8px; /* Adjust padding for smaller radio buttons */
+    }
+    .btn-primary {
+        font-size: 20px; /* Decrease button font size for small screens */
+    }
+    .card-title{
+        font-size: 25px;
+    }
+}
+
+/* For large screens (992px to 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .form-group {
+        font-size: 10px; /* Decrease the font size for small screens */
+        width: 100% !important;
+    }
+    .custom-radio {
+        padding: 5px; /* Adjust padding for smaller radio buttons */
+    }
+    .btn-primary {
+        font-size: 14px; /* Decrease button font size for small screens */
+    }
+}
+
+/* For extra large screens (1200px to 1599px) */
+@media (min-width: 1200px) and (max-width: 1599px) {
+    .form-group {
+        font-size: 10px; /* Decrease the font size for small screens */
+        width: 100% !important;
+    }
+    .custom-radio {
+        padding: 5px; /* Adjust padding for smaller radio buttons */
+    }
+    .btn-primary {
+        font-size: 14px; /* Decrease button font size for small screens */
+    }
+}
+
+/* For extra extra large screens (1600px and above) */
+@media (min-width: 1600px) {
+    .form-group {
+        font-size: 20px; /* Decrease the font size for small screens */
+        width: 100% !important;
+    }
+    .custom-radio {
+        padding: 10px; /* Adjust padding for smaller radio buttons */
+    }
+    .btn-primary {
+        font-size: 20px; /* Decrease button font size for small screens */
+    }
+    .card-title{
+        font-size: 30px;
+    }
+}
+
+
 
     </style>
     <?php
@@ -193,24 +304,24 @@ if ($manualCutoffTime == 0) {
                 <div class="row justify-content-center">
                     <div class="col-md-8">
 
-                        <div class="card rouded-5 shadow" style="background-color: rgba(255, 255, 255, 0.88);">
+                        <div class="card rouded-5 shadow" style="background-color: rgba(255, 255, 255, 0.9);">
                             <div class="card-header rounded-0" style="display:<?php echo $cutoff; ?>;">
                                 <div class="h5 card-title" style="color:red" >I'm sorry, the cutoff time has passed, and it is no longer possible to generate a queue number. </div>
                             </div>
                             <div class="card-header rounded-0">
-                                <center class="h5 card-title" style="font-size: 30px; font-weight: bold;">Get your Queue Number Here</center>
+                                <center class="h5 card-title" style="font-weight: bold;">Get your Queue Number Here</center>
                             </div>
                             <div class="card-body rounded-0">
                                 <form action="" id="queue-form">
                                     <div class="form-group">
-                                        <label for="customer_name" style="font-size: 20px; margin-bottom: 15px;"><b>Enter your Name</b></label>
+                                        <label for="customer_name" style="margin-bottom: 15px;"><b>Enter your Name</b></label>
                                         <input type="text" id="customer_name" name="customer_name" autofocus autocomplete="off" type="submit" style="background-color: rgba(255, 255, 255, 0.8);"<?php echo $buttonDisabled; ?> class="form-control form-control-lg rounded-0 border-0 border-bottom" required>
                                     </div>
                                     <!-- <form action="" id="login-form"> -->
                                             <center style="margin-top: 2em; font-weight: bold; font-size: 20px;"><small></small></center>
                                             <!-- Replace this part in your HTML code -->
                                     <div class="form-group">
-                                        <label for="teller_id" style="font-size: 20px; margin-bottom: 15px;"><b>Select Transaction</b></label>
+                                        <label for="teller_id" style="margin-bottom: 15px;"><b>Select Transaction</b></label>
                                         
                                             
                                         <table>

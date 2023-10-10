@@ -60,7 +60,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
             left: 0;
             width: 100%;
             height: 100%;
-            filter: blur(8px); /* Adjust the blur amount as needed */
+            filter: blur(4px); /* Adjust the blur amount as needed */
             z-index: -1; /* Place the pseudo-element behind other content */
         }
         main{

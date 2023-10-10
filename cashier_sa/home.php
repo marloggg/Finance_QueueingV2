@@ -59,10 +59,10 @@
 <script>
     var websocket = new WebSocket("ws://<?php echo $_SERVER['SERVER_NAME'] ?>:2306/swu-fpqsv1/php-sockets.php"); 
     websocket.onopen = function(event) { 
-      console.log('socket is open!')
+    console.log('socket is open!')
 		}
     websocket.onclose = function(event){
-      console.log('socket has been closed!')
+    console.log('socket has been closed!')
     var websocket = new WebSocket("ws://<?php echo $_SERVER['SERVER_NAME'] ?>:2306/swu-fpqsv1/php-sockets.php"); 
     };
     var in_queue = {};
