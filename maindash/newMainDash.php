@@ -161,7 +161,7 @@
 </head>
 <body>
     <div class="content">
-        <center><h1 class="title">Usability of the Multipurpose Queuing System <br>
+        <center><h1 class="title">Usability of the Multiplatform Queuing System <br>
             SOUTHWESTERN UNIVERSITY PHINMA</h1></center>
         <center><a href="#" class="me" id="menu-button">Proceed</a></center>
     </div>
