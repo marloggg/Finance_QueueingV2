@@ -60,7 +60,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
             left: 0;
             width: 100%;
             height: 100%;
-            filter: blur(4px); /* Adjust the blur amount as needed */
+            filter: blur(8px); /* Adjust the blur amount as needed */
             z-index: -1; /* Place the pseudo-element behind other content */
         }
         main{
@@ -194,7 +194,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
     <nav class="navbar navbar-expand-lg navbar-dark bg-gradient" id="topNavBar">
         <div class="container">
             <a class="navbar-brand" href="./">
-            Queuing for RAD
+            Queuing FOREIGN
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -222,7 +222,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
                     <?php echo $_SESSION['lastname'] ?>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="./../Actions.php?a=c_logout">Logout</a></li>
+                    <li><a class="dropdown-item" href="./../Actions.php?a=c_logout_liv">Logout</a></li>
                 </ul>
             </div>
             </div>

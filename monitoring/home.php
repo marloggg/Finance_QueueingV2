@@ -39,7 +39,7 @@
                         <div class="col-md-6">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title text-center font-style=bold"><b>MEDICINE</b></h5>
+                                    <h5 class="card-title text-center font-style=bold"><b>MEDICINE & LAW</b></h5>
                                 </div>
                                 <div class="card-body" style="height: 250px;">
                                     <div id="serving-list-medicine" class="list-group overflow-auto">
@@ -304,7 +304,7 @@
                         nitem.hide('slow');
                         } else {
                         nitem.show('slow');
-                        var message = "RAD NUMBER " + Math.abs(resp.queue) + "!!!!!!!, PLEASE PROCEED TO " + cashier + "!!!!!!!!!!!!!";
+                        var message = "SHS NUMBER " + Math.abs(resp.queue) + "!!!!!!!, PLEASE PROCEED TO " + cashier + "!!!!!!!!!!!!!";
                         speak(message);
                         }
                     }
@@ -337,7 +337,7 @@
                         nitem.hide('slow');
                         } else {
                         nitem.show('slow');
-                        var message = "LIVE' NUMBER " + Math.abs(resp.queue) + "!!!!!!!, PLEASE PROCEED TO " + cashier + "!!!!!!!!!!!!!";
+                        var message = "F' NUMBER " + Math.abs(resp.queue) + "!!!!!!!, PLEASE PROCEED TO " + cashier + "!!!!!!!!!!!!!";
                         speak(message);
                         }
                     }
@@ -436,7 +436,7 @@
                         nitem.hide('slow');
                         } else {
                         nitem.show('slow');
-                        var message = "MEDICINE NUMBER" + Math.abs(resp.queue) + "!!!!!!!, PLEASE PROCEED TO " + cashier + "!!!!!!!!!!!!!";
+                        var message = "MEED NUMBER" + Math.abs(resp.queue) + "!!!!!!!, PLEASE PROCEED TO " + cashier + "!!!!!!!!!!!!!";
                         speak(message);
                         }
                     }
