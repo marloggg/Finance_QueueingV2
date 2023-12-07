@@ -250,7 +250,7 @@ input:checked + .slider:before {
         <div class="modal-body">
         </div>
         <div class="modal-footer py-1">
-            <button type="button" class="btn btn-sm rounded-0 btn-primary" id='submit' onclick="$('#uni_modal form').submit()">Save</button>
+            <button type="button" name="save" class="btn btn-sm rounded-0 btn-primary" id='submit' onclick="$('#uni_modal form').submit()">Save</button>
             <button type="button" class="btn btn-sm rounded-0 btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
         </div>

@@ -8,11 +8,11 @@
     <style>
         /* Custom styles */
         body {
-            background-color: #7c7c7c;
+            background-color: #3498db;
             overflow: hidden;
         }
         .navbar {
-            background-color: #B02609;
+            background-color: #3498db;
         }
         .navbar-dark .navbar-toggler-icon {
             background-color: #fff;
@@ -27,11 +27,7 @@
             position: relative;
             text-align: center;
             color: #fff;
-            background: url('<?php 
-            $imageFiles = scandir('./../images');
-            $image = isset($imageFiles[2]) ? './../images/' . $imageFiles[2] : '';
-            echo $image;
-            ?>') no-repeat center center fixed;
+            
             background-size: 45%;
             height: 100vh;
             font-size: 20px;
@@ -42,7 +38,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: #495057;
         }
         .btn-primary { 
             margin-right: 20px;

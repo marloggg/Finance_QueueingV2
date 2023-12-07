@@ -135,7 +135,8 @@ Class Actions extends DBConnection{
                     $resp['msg'] = "Cashier successfully saved.";
                 else
                     $resp['msg'] = "Cashier successfully updated.";
-            }else{
+            }
+                else{
                 $resp['status']="failed";
                 if(empty($id))
                     $resp['msg'] = "Saving New Cashier Failed.";

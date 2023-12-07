@@ -72,7 +72,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
     /* Style for the custom radio button */
     .custom-radio {
         display: inline-block;
-        width: 95%; /* Set a fixed width for the radio buttons */
+        width: 135%; /* Set a fixed width for the radio buttons */
         height: 100%; /* Set a fixed height for the radio buttons */
         padding: 10px;
         border: 2px solid #ccc;
@@ -437,6 +437,12 @@ if ($manualCutoffTime == 0) {
                             break;
                         case 2: 
                             url = './Actions.php?a=save_queue_liv';
+                            break;
+                        case 4: 
+                            url = './Actions.php?a=save_enrollment';
+                            break;
+                        case 5: 
+                            url = './Actions.php?a=save_medicine';
                             break;
                     }
                     $.ajax({

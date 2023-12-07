@@ -45,7 +45,7 @@ $qry = $conn->query("SELECT * FROM `cashier_list` where cashier_id = '{$_GET['id
             <input type="password" name="confirm_password" id="confirm_password" required class="form-control form-control-sm rounded-0" value="">
         </div>
 
-        
+        <!-- <button type="submit" name="submit" class="btn btn-primary">Submit</button> -->
     </form>
 </div>
 

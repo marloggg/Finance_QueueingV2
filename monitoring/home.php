@@ -5,52 +5,138 @@
             <div class="col-md-5 d-flex flex-column justify-content-center align-items-center border-end border-dark" id="serving-field">
                 <div class="card col-sm-12 shadow h-100">
                     
-                    <div class="card-header">
-                        <h5 class="card-title text-center font-style=bold"><b>RAD</b></h5>
-                    </div>
-                    <div class="card-body h-100">
-                    <div id="serving-list" class="list-group overflow-auto">
-                            <?php 
-                            $cashier = $conn->query("SELECT * FROM `teller_list` order by `teller_id` asc");
-                            while($row = $cashier->fetchArray()):
-                            ?>
-                            <div class="list-group-item" data-id="<?php echo $row['teller_id']?>" style="display:none" >
-                            <center> <div class="fs-4 bold fw-4 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div></center>
-                            <center> <div ><span class="fs-3 fw-bold">RAD-</span><span class="serve-queue fs-3 fw-bold">10001 - Ivan Jay Almeria</span></div></center>
+                <div class="row">
+    <!-- First Card - RAD -->
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title text-center font-style=bold"><b>SHS</b></h5>
+                                </div>
+                                <div class="card-body" style="height: 250px;">
+                                    <div id="serving-list" class="list-group overflow-auto">
+                                        <?php 
+                                        $cashier = $conn->query("SELECT * FROM `teller_list` order by `teller_id` asc");
+                                        while($row = $cashier->fetchArray()):
+                                        ?>
+                                        <div class="list-group-item" data-id="<?php echo $row['teller_id']?>" style="display:none" >
+                                            <center> 
+                                                <div class="fs-4 bold fw-4 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div>
+                                            </center>
+                                            <center> 
+                                                <div>
+                                                    <span class="fs-3 fw-bold">SHS-</span>
+                                                    <span class="serve-queue fs-3 fw-bold">10001 - Ivan Jay Almeria</span>
+                                                </div>
+                                            </center>
+                                        </div>
+                                        <?php endwhile; ?> 
+                                    </div>                        
+                                </div>
                             </div>
-                            <?php endwhile; ?> 
-                        </div>                        
+                        </div>
+
+                        <!-- Second Card - RAD1 -->
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title text-center font-style=bold"><b>MEDICINE</b></h5>
+                                </div>
+                                <div class="card-body" style="height: 250px;">
+                                    <div id="serving-list-medicine" class="list-group overflow-auto">
+                                        <?php 
+                                        $cashier = $conn->query("SELECT * FROM `teller_list` order by `teller_id` asc");
+                                        while($row = $cashier->fetchArray()):
+                                        ?>
+                                        <div class="list-group-item" data-id="<?php echo $row['teller_id']?>" style="display:none" >
+                                            <center> 
+                                                <div class="fs-4 bold fw-4 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div>
+                                            </center>
+                                            <center> 
+                                                <div>
+                                                    <span class="fs-3 fw-bold">MED-</span>
+                                                    <span class="serve-queue fs-3 fw-bold">10001 - Ivan Jay Almeria</span>
+                                                </div>
+                                            </center>
+                                        </div>
+                                        <?php endwhile; ?> 
+                                    </div>                        
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="card-header">
-                        <h5 class="card-title text-center"><b>LIVE</b></h5>
-                    </div>
-                    <div class="card-body h-100">
-                    <div id="serving-list-liv" class="list-group overflow-auto">
-                            <?php 
-                            $cashier = $conn->query("SELECT * FROM `teller_list` order by `teller_id` asc");
-                            while($row = $cashier->fetchArray()):
-                            ?>
-                            <div class="list-group-item" data-id="<?php echo $row['teller_id']?>" style="display:none" >
-                            <center> <div class="fs-4 fw-4 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div></center>
-                            <center> <div ><span class="fs-3 fw-bold">LIVE-</span><span class="serve-queue fs-3 fw-bold">10001 - Ivan Jay Almeria</span></div></center>
+                    <div class="row">
+                        <!-- Third Card - RAD2 -->
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title text-center font-style=bold"><b>FOREIGN</b></h5>
+                                </div>
+                                <div class="card-body" style="height: 250px;">
+                                    <div id="serving-list-liv" class="list-group overflow-auto">
+                                        <?php 
+                                        $cashier = $conn->query("SELECT * FROM `teller_list` order by `teller_id` asc");
+                                        while($row = $cashier->fetchArray()):
+                                        ?>
+                                        <div class="list-group-item" data-id="<?php echo $row['teller_id']?>" style="display:none" >
+                                            <center> 
+                                                <div class="fs-4 bold fw-4 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div>
+                                            </center>
+                                            <center> 
+                                                <div>
+                                                    <span class="fs-3 fw-bold">F-</span>
+                                                    <span class="serve-queue fs-3 fw-bold">10001 - Ivan Jay Almeria</span>
+                                                </div>
+                                            </center>
+                                        </div>
+                                        <?php endwhile; ?> 
+                                    </div>                        
+                                </div>
                             </div>
-                            <?php endwhile; ?>                             
+                        </div>
+
+                        <!-- Fourth Card - LIVE -->
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title text-center"><b>GRADUATE & UNDERGRAD</b></h5>
+                                </div>
+                                <div class="card-body" style="height: 250px;">
+                                    <div id="serving-list-sa" class="list-group overflow-auto">
+                                        <?php 
+                                        $cashier = $conn->query("SELECT * FROM `teller_list` order by `teller_id` asc");
+                                        while($row = $cashier->fetchArray()):
+                                        ?>
+                                        <div class="list-group-item" data-id="<?php echo $row['teller_id']?>" style="display:none" >
+                                            <center> 
+                                                <div class="fs-4 fw-4 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div>
+                                            </center>
+                                            <center> 
+                                                <div>
+                                                    <span class="fs-3 fw-bold">T-</span>
+                                                    <span class="serve-queue fs-3 fw-bold">10001 - Ivan Jay Almeria</span>
+                                                </div>
+                                            </center>
+                                        </div>
+                                        <?php endwhile; ?>                             
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="card-header">
-                        <h5 class="card-title text-center"><b>STUDENT ACCOUNT</b></h5>
+                        <h5 class="card-title text-center"><b>ENROLLMENT, INC, ORF etc.</b></h5>
                     </div>
                     <div class="card-body h-100">
-                    <div id="serving-list-sa" class="list-group overflow-auto">
+                    <div id="serving-list-enrollment" class="list-group overflow-auto">
                             <?php 
                             $cashier = $conn->query("SELECT * FROM `teller_list` order by `teller_id` asc");
                             while($row = $cashier->fetchArray()):
                             ?>
                             <div class="list-group-item" data-id="<?php echo $row['teller_id']?>" style="display:none" >
-                            <center> <div class="fs-4 fw-4 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div></center>
-                            <center> <div ><span class="fs-3 fw-bold">SA-</span><span class="serve-queue fs-3 fw-bold">10001 - Jairo</span></div></center>
+                            <center> <div class="fs-2 fw-4 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div></center>
+                            <center> <div ><span class="fs-2 fw-bold">ENROLLMENT-</span><span class="serve-queue fs-2 fw-bold">10001 - Jairo</span></div></center>
                             </div>
                             <?php endwhile; ?>                  
                             </div>
@@ -179,6 +265,20 @@
         $('#serving-field,#action-field').height(container_height - 50)
         $('#serving-list-sa').height($('#serving-list-sa').parent().height() - 30)
     }
+    function _resize_elements_enrollment(){
+        var window_height = $(window).height()
+        var nav_height = $('nav').height()
+        var container_height = window_height - nav_height
+        $('#serving-field,#action-field').height(container_height - 50)
+        $('#serving-list-enrollment').height($('#serving-list-enrollment').parent().height() - 30)
+    }
+    function _resize_elements_medicine(){
+        var window_height = $(window).height()
+        var nav_height = $('nav').height()
+        var container_height = window_height - nav_height
+        $('#serving-field,#action-field').height(container_height - 50)
+        $('#serving-list-medicine').height($('#serving-list-medicine').parent().height() - 30)
+    }
 
 // RAD
                     function new_queue($cashier_id, $qid) {
@@ -278,6 +378,74 @@
                 });
                 }
             // SA END
+
+             // enrollment
+             function new_enrollment($cashier_id, $qid) {
+                $.ajax({
+                    url: './../Actions.php?a=get_enrollment',
+                    method: 'POST',
+                    data: { cashier_id: $cashier_id, qid: $qid },
+                    dataType: 'JSON',
+                    error: err => {
+                    console.log(err);
+                    },
+                    success: function (resp) {
+                    if (resp.status == 'success') {
+                        var item = $('#serving-list-enrollment').find('.list-group-item[data-id="' + $cashier_id + '"]');
+                        var cashier = item.find('.cashier-name').text();
+                        var nitem = item.clone();
+                        
+                        nitem.find('.serve-queue').text(resp.queue);
+                        item.remove();
+                        $('#serving-list-enrollment').prepend(nitem);
+                        
+                        if (resp.queue == '') {
+                        nitem.hide('slow');
+                        } else {
+                        nitem.show('slow');
+                        var message = "ENROLLMENT NUMBER" + Math.abs(resp.queue) + "!!!!!!!, PLEASE PROCEED TO " + cashier + "!!!!!!!!!!!!!";
+                        speak(message);
+                        }
+                    }
+                    }
+                });
+                }
+            // SA enrollment
+
+             // medicine
+             function new_medicine($cashier_id, $qid) {
+                $.ajax({
+                    url: './../Actions.php?a=get_medicine',
+                    method: 'POST',
+                    data: { cashier_id: $cashier_id, qid: $qid },
+                    dataType: 'JSON',
+                    error: err => {
+                    console.log(err);
+                    },
+                    success: function (resp) {
+                    if (resp.status == 'success') {
+                        var item = $('#serving-list-medicine').find('.list-group-item[data-id="' + $cashier_id + '"]');
+                        var cashier = item.find('.cashier-name').text();
+                        var nitem = item.clone();
+                        
+                        nitem.find('.serve-queue').text(resp.queue);
+                        item.remove();
+                        $('#serving-list-medicine').prepend(nitem);
+                        
+                        if (resp.queue == '') {
+                        nitem.hide('slow');
+                        } else {
+                        nitem.show('slow');
+                        var message = "MEDICINE NUMBER" + Math.abs(resp.queue) + "!!!!!!!, PLEASE PROCEED TO " + cashier + "!!!!!!!!!!!!!";
+                        speak(message);
+                        }
+                    }
+                    }
+                });
+                }
+            // SA medicine
+
+
     
     $(function(){
         setInterval(() => {
@@ -289,12 +457,16 @@
             _resize_elements()
             _resize_elements_liv()
             _resize_elements_sa()
+            _resize_elements_enrollment()
+            _resize_elements_medicine()
             vid_loop.play()
         })
         $(window).resize(function(){
             _resize_elements()
             _resize_elements_liv()
             _resize_elements_sa()
+            _resize_elements_enrollment()
+            _resize_elements_medicine()
         })
 
         websocket.onmessage = function(event) {
@@ -308,6 +480,12 @@
                 }
                 if(Data.type == 'queue_sa'){
                     new_queue_sa(Data.cashier_id,Data.qid)          
+                }
+                if(Data.type == 'enrollment'){
+                    new_enrollment(Data.cashier_id,Data.qid)          
+                }
+                if(Data.type == 'medicine'){
+                    new_medicine(Data.cashier_id,Data.qid)          
                 }
                 if(Data.type == 'test'){
                     speak("This is a sample notification.")

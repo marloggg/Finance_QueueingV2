@@ -33,6 +33,28 @@ if(isset($_GET['id'])){
         }
     }
 }
+if(isset($_GET['id'])){
+    $qry = $conn->query("SELECT * FROM `enrollment` where queue_id = '{$_GET['id']}'");
+    @$res = $qry->fetchArray();
+    if($res){
+        foreach($res as $k => $v){
+            if(!is_numeric($k)){
+                $$k = $v;
+            }
+        }
+    }
+}
+if(isset($_GET['id'])){
+    $qry = $conn->query("SELECT * FROM `medicine` where queue_id = '{$_GET['id']}'");
+    @$res = $qry->fetchArray();
+    if($res){
+        foreach($res as $k => $v){
+            if(!is_numeric($k)){
+                $$k = $v;
+            }
+        }
+    }
+}
 ?>
 <style>
     #uni_modal .modal-footer{
@@ -71,7 +93,7 @@ if(isset($_GET['id'])){
                         $row = $qry->fetchArray();
                         if($row){
                             $latestRecord = $row;
-                            $label = "RAD";
+                            $label = "SHS";
                         }
                         
                         // Query the "LIVE" table
@@ -79,14 +101,28 @@ if(isset($_GET['id'])){
                         $row = $qry->fetchArray();
                         if($row && (!$latestRecord || $row['date_created'] > $latestRecord['date_created'])){
                             $latestRecord = $row;
-                            $label = "LIVE";
+                            $label = "F";
                         }
                         
                         // Query the "SA" table
                         $qry = $conn->query("SELECT * FROM `queue_list_sa` where queue_id = '$queue_id' ORDER BY date_created DESC LIMIT 1");
                         $row = $qry->fetchArray();
                         if($row && (!$latestRecord || $row['date_created'] > $latestRecord['date_created'])){
-                            $label = "SA";
+                            $label = "T";
+                        }
+
+                        // Query the "enrollment" table
+                        $qry = $conn->query("SELECT * FROM `enrollment` where queue_id = '$queue_id' ORDER BY date_created DESC LIMIT 1");
+                        $row = $qry->fetchArray();
+                        if($row && (!$latestRecord || $row['date_created'] > $latestRecord['date_created'])){
+                            $label = "E";
+                        }
+
+                        // Query the "enrollment" table
+                        $qry = $conn->query("SELECT * FROM `medicine` where queue_id = '$queue_id' ORDER BY date_created DESC LIMIT 1");
+                        $row = $qry->fetchArray();
+                        if($row && (!$latestRecord || $row['date_created'] > $latestRecord['date_created'])){
+                            $label = "MED";
                         }
                         
                         echo $label;

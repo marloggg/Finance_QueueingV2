@@ -1,6 +1,6 @@
 <?php
 define('HOST_NAME',"localhost"); 
-// define('HOST_NAME',"172.20.100.82"); 
+// define('HOST_NAME',"172.20.100.141"); 
 define('PORT',"2306");
 $null = NULL;
 

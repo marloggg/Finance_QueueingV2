@@ -90,6 +90,44 @@ Class DBConnection extends SQLite3{
             FOREIGN KEY(`guest_id`) REFERENCES `guest_list`(`guest_id`)
         )");
         // end sa
+
+        // enrollent
+        $this->exec("CREATE TABLE IF NOT EXISTS `enrollment` (
+            `queue_id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+            `queue` TEXT NOT NULL,
+            `customer_name` TEXT NOT NULL,
+            `status` INTEGER NOT NULL DEFAULT 2,
+            `date_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            `cashier_id` INTEGER,
+            `teller_id` INTEGER,
+            `student_id` TEXT,
+            `guest_id` INTEGER,
+            FOREIGN KEY(`student_id`) REFERENCES `student_list`(`student_id`),
+            FOREIGN KEY(`teller_id`) REFERENCES `teller_list`(`teller_id`),
+            FOREIGN KEY(`cashier_id`) REFERENCES `cashier_list`(`cashier_id`),
+            FOREIGN KEY(`guest_id`) REFERENCES `guest_list`(`guest_id`)
+        )");
+        // end enrollment
+
+        // medicine
+        $this->exec("CREATE TABLE IF NOT EXISTS `medicine` (
+            `queue_id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+            `queue` TEXT NOT NULL,
+            `customer_name` TEXT NOT NULL,
+            `status` INTEGER NOT NULL DEFAULT 2,
+            `date_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            `cashier_id` INTEGER,
+            `teller_id` INTEGER,
+            `student_id` TEXT,
+            `guest_id` INTEGER,
+            FOREIGN KEY(`student_id`) REFERENCES `student_list`(`student_id`),
+            FOREIGN KEY(`teller_id`) REFERENCES `teller_list`(`teller_id`),
+            FOREIGN KEY(`cashier_id`) REFERENCES `cashier_list`(`cashier_id`),
+            FOREIGN KEY(`guest_id`) REFERENCES `guest_list`(`guest_id`)
+        )");
+        // end medicine
+
+
         $this->exec("CREATE TABLE IF NOT EXISTS `guest_list` (
             `guest_id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
             `guest_name` TEXT 

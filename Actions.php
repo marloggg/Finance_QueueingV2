@@ -2,6 +2,46 @@
 session_start();
 require_once('DBConnection.php');
 
+// use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\Exception;
+
+// require 'path/to/PHPMailer/src/Exception.php';
+// require 'path/to/PHPMailer/src/PHPMailer.php';
+// require 'path/to/PHPMailer/src/SMTP.php';
+// require 'vendor/autoload.php';
+
+
+// function sendemail($username,$password,$email_address,$lastname)
+// {
+//     $mail = new PHPMailer(true);
+//     //Server settings
+//     $mail->isSMTP();                              //Send using SMTP
+//     $mail->Host       = 'smtp.gmail.com';       //Set the SMTP server to send through
+//     $mail->SMTPAuth   = true;             //Enable SMTP authentication
+//     $mail->Username   = 'swuqueueing@gmail.com';   //SMTP write your email
+//     $mail->Password   = 'pxcfvqwtdtudetxx';      //SMTP password
+//     $mail->SMTPSecure = 'ssl';            //Enable implicit SSL encryption
+//     $mail->Port       = 465;                                    
+
+//     $mail->setFrom('swuqueueing@gmail.com');
+//     $mail->addAddress('$email_address');  
+    
+//     $mail->isHTML(true);                                  //Set email format to HTML
+//     $mail->Subject = 'Account Creation';
+//     $mail->Body    = 'Hi! $lastname,
+            
+//     Congratulations! Your account has been successfully created. Welcome to SWU queueing system. Please login you account using this credentials:
+    
+//     Username: $username
+//     Password: $password
+    
+//     Sincerely,
+//     SWUQUEUEING TEAM';//Add a recipient
+
+//     $mail->send();
+//     echo 'Message has been sent';
+// }
+
 Class Actions extends DBConnection{
     function __construct(){
         parent::__construct();
@@ -100,6 +140,12 @@ Class Actions extends DBConnection{
                 $this->query("UPDATE `cashier_list` set log_status = 2 where cashier_id  = {$_SESSION['cashier_id']}");
                 $this->query("UPDATE `teller_list` set log_status = 2 where teller_id  = {$_SESSION['teller_id']}");
         header("location:./cashier_sa");
+    }
+    function c_logout_enrollment(){
+        session_destroy();
+                $this->query("UPDATE `cashier_list` set log_status = 2 where cashier_id  = {$_SESSION['cashier_id']}");
+                $this->query("UPDATE `teller_list` set log_status = 2 where teller_id  = {$_SESSION['teller_id']}");
+        header("location:./enrollment");
     }
     /*function update_credentials(){
         extract($_POST);
@@ -291,7 +337,8 @@ Class Actions extends DBConnection{
                         $resp['msg'] = "Cashier successfully saved.";
                     else
                         $resp['msg'] = "Cashier successfully updated.";
-                }else{
+                }
+                else{
                     $resp['status']="failed";
                     if(empty($id))
                         $resp['msg'] = "Saving New Cashier Failed assssass.";
@@ -358,6 +405,62 @@ Class Actions extends DBConnection{
         }
         return json_encode($resp);
     }
+
+// enrollment
+    function save_enrollment(){
+        $code = sprintf("%'.05d",1);
+        while(true){
+            $chk = $this->query("SELECT count(queue_id) `count` FROM `enrollment` where queue = '".$code."' and date(date_created) = '".date('Y-m-d')."' ")->fetchArray()['count'];
+            if($chk > 0){
+                $code = sprintf("%'.05d",abs($code) + 1);
+                
+            }else{
+                break;
+            }
+        }
+        $_POST['queue'] = $code;
+        extract($_POST);
+        $sql = "INSERT INTO `enrollment` (`queue`, `customer_name`, `date_created`) VALUES ('{$queue}', '{$customer_name}', datetime('now', '+8 hours'))";
+        $save = $this->query($sql);
+        if($save){
+            $resp['status'] = 'success';
+            $resp['id'] = $this->query("SELECT last_insert_rowid()")->fetchArray()[0];
+        }else{
+            $resp['status'] = 'failed';
+            $resp['msg'] = "An error occured. Error: ".$this->lastErrorMsg();
+        }
+        return json_encode($resp);
+    }
+// end enrollment
+
+// medicine
+function save_medicine(){
+    $code = sprintf("%'.05d",1);
+    while(true){
+        $chk = $this->query("SELECT count(queue_id) `count` FROM `medicine` where queue = '".$code."' and date(date_created) = '".date('Y-m-d')."' ")->fetchArray()['count'];
+        if($chk > 0){
+            $code = sprintf("%'.05d",abs($code) + 1);
+            
+        }else{
+            break;
+        }
+    }
+    $_POST['queue'] = $code;
+    extract($_POST);
+    $sql = "INSERT INTO `medicine` (`queue`, `customer_name`, `date_created`) VALUES ('{$queue}', '{$customer_name}', datetime('now', '+8 hours'))";
+    $save = $this->query($sql);
+    if($save){
+        $resp['status'] = 'success';
+        $resp['id'] = $this->query("SELECT last_insert_rowid()")->fetchArray()[0];
+    }else{
+        $resp['status'] = 'failed';
+        $resp['msg'] = "An error occured. Error: ".$this->lastErrorMsg();
+    }
+    return json_encode($resp);
+}
+// end medicine
+
+
     function get_queue(){
         extract($_POST);
         $qry = $this->query("SELECT * FROM `queue_list` where queue_id = '{$qid}' ");
@@ -464,6 +567,42 @@ Class Actions extends DBConnection{
         }
         return json_encode($resp);
     }
+    // enrollment
+    function get_enrollment(){
+        extract($_POST);
+        $qry = $this->query("SELECT * FROM `enrollment` where queue_id = '{$qid}' ");
+        @$res = $qry->fetchArray();
+            $resp['status']='success';
+        if($res){
+            $resp['queue']=$res['queue'];
+            $resp['name']=$res['customer_name'];
+        }else{
+            $resp['queue']="";
+            $resp['name']="";
+        }
+        return json_encode($resp);
+    }
+    // end enrollment
+
+    // enrollment
+    function get_medicine(){
+        extract($_POST);
+        $qry = $this->query("SELECT * FROM `medicine` where queue_id = '{$qid}' ");
+        @$res = $qry->fetchArray();
+            $resp['status']='success';
+        if($res){
+            $resp['queue']=$res['queue'];
+            $resp['name']=$res['customer_name'];
+        }else{
+            $resp['queue']="";
+            $resp['name']="";
+        }
+        return json_encode($resp);
+    }
+    // end enrollment
+
+    
+
     function next_queue_liv(){
         extract($_POST);
         $get = $this->query("SELECT queue_id,`queue`,customer_name FROM `queue_list_liv` where status = 2 and date(date_created) = '".date("Y-m-d")."' order by queue_id asc  limit 1");
@@ -493,6 +632,42 @@ Class Actions extends DBConnection{
         
         return json_encode($resp);
     }
+
+    // enrollment
+    function next_enrollment(){
+        extract($_POST);
+        $get = $this->query("SELECT queue_id,`queue`,customer_name FROM `enrollment` where status = 2 and date(date_created) = '".date("Y-m-d")."' order by queue_id asc  limit 1");
+        @$res = $get->fetchArray();
+        $resp['status']='success';
+        if($res){
+            $this->query("UPDATE `enrollment` SET status = 1, cashier_id = '{$_SESSION['cashier_id']}', teller_id = '{$_SESSION['teller_id']}' WHERE queue_id = '{$res['queue_id']}'");
+            $resp['data']=$res;
+        }else{
+            $resp['data']=$res;
+        }
+        
+        return json_encode($resp);
+    }
+    // end enrollment
+
+    // medicine
+    function next_medicine(){
+        extract($_POST);
+        $get = $this->query("SELECT queue_id,`queue`,customer_name FROM `medicine` where status = 2 and date(date_created) = '".date("Y-m-d")."' order by queue_id asc  limit 1");
+        @$res = $get->fetchArray();
+        $resp['status']='success';
+        if($res){
+            $this->query("UPDATE `medicine` SET status = 1, cashier_id = '{$_SESSION['cashier_id']}', teller_id = '{$_SESSION['teller_id']}' WHERE queue_id = '{$res['queue_id']}'");
+            $resp['data']=$res;
+        }else{
+            $resp['data']=$res;
+        }
+        
+        return json_encode($resp);
+    }
+    // end medicine
+
+
 
     function update_video(){
         extract($_FILES);
@@ -648,6 +823,12 @@ switch($a){
     case 'c_logout_sa':
         echo $action->c_logout_sa();
     break;
+    case 'c_logout_enrollment':
+        echo $action->c_logout_enrollment();
+    break;
+    case 'c_logout_medicine':
+        echo $action->c_logout_medicine();
+    break;
     case 'update_Acredentials':
         echo $action->update_Acredentials();
     break;
@@ -682,6 +863,18 @@ switch($a){
     case 'get_queue_liv':
         echo $action->get_queue_liv();
     break;
+    case 'save_enrollment':
+        echo $action->save_enrollment();
+    break;
+    case 'get_enrollment':
+        echo $action->get_enrollment();
+    break;
+    case 'save_medicine':
+        echo $action->save_medicine();
+    break;
+    case 'get_medicine':
+        echo $action->get_medicine();
+    break;
     case 'get_queue_sa':
         echo $action->get_queue_sa();
     break;
@@ -690,6 +883,12 @@ switch($a){
     break;
     case 'next_queue_sa':
         echo $action->next_queue_sa();
+    break;
+    case 'next_enrollment':
+        echo $action->next_enrollment();
+    break;
+    case 'next_medicine':
+        echo $action->next_medicine();
     break;
     case 'update_video':
         echo $action->update_video();
