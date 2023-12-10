@@ -194,7 +194,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
     <nav class="navbar navbar-expand-lg navbar-dark bg-gradient" id="topNavBar">
         <div class="container">
             <a class="navbar-brand" href="./">
-            Queuing STUDENT ACCOUNT
+            Queuing GRADUATE & UNDERGRAD
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

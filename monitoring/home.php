@@ -136,7 +136,7 @@
                             ?>
                             <div class="list-group-item" data-id="<?php echo $row['teller_id']?>" style="display:none" >
                             <center> <div class="fs-2 fw-4 cashier-name border-bottom border-info"><?php echo $row['teller_name'] ?></div></center>
-                            <center> <div ><span class="fs-2 fw-bold">E-</span><span class="serve-queue fs-2 fw-bold">10001 - Jairo</span></div></center>
+                            <center> <div ><span class="fs-2 fw-bold">ENR-</span><span class="serve-queue fs-2 fw-bold">10001 - Jairo</span></div></center>
                             </div>
                             <?php endwhile; ?>                  
                             </div>
@@ -337,7 +337,7 @@
                         nitem.hide('slow');
                         } else {
                         nitem.show('slow');
-                        var message = "F' NUMBER " + Math.abs(resp.queue) + "!!!!!!!, PLEASE PROCEED TO " + cashier + "!!!!!!!!!!!!!";
+                        var message = "F NUMBER " + Math.abs(resp.queue) + "!!!!!!!, PLEASE PROCEED TO " + cashier + "!!!!!!!!!!!!!";
                         speak(message);
                         }
                     }

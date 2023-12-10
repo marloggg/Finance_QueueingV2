@@ -115,7 +115,7 @@ if(isset($_GET['id'])){
                         $qry = $conn->query("SELECT * FROM `enrollment` where queue_id = '$queue_id' ORDER BY date_created DESC LIMIT 1");
                         $row = $qry->fetchArray();
                         if($row && (!$latestRecord || $row['date_created'] > $latestRecord['date_created'])){
-                            $label = "E";
+                            $label = "ENR";
                         }
 
                         // Query the "enrollment" table

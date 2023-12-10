@@ -30,7 +30,7 @@
         <div class="col-md-6 d-flex flex-column justify-content-center align-items-center" id="serving-field">
             <div class="card col-sm-8 shadow">
                 <div class="card-header">
-                    <h5 class="card-title text-center">Now Serving SA</h5>
+                    <h5 class="card-title text-center">Now Serving GRADUATE & UNDERGRAD</h5>
                 </div>
                 <div class="card-body">
                     <div class="fs-1  my-2 fw-bold text-center"><span id="queue">-----</span></div>
